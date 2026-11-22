@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import {Locale, siteConfig} from '../config/site';
+import {Locale, absoluteMediaUrl, siteConfig} from '../config/site';
 import {absoluteUrl, localePath, stripLocalePrefix} from '../utils/routes';
 
 export interface SeoMetadata {
@@ -9,6 +9,7 @@ export interface SeoMetadata {
   locale: Locale;
   noIndex?: boolean;
   type?: 'website' | 'article';
+  image?: string;
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
@@ -17,6 +18,8 @@ export interface CollectedHeadData {
   dir: 'ltr' | 'rtl';
   tagsHtml: string;
 }
+
+const DEFAULT_OG_IMAGE = 'src/assets/images/bi_analytics_workspace_1795357660215.jpg';
 
 const HeadCollectorContext = createContext<((data: CollectedHeadData) => void) | null>(null);
 
@@ -59,6 +62,7 @@ export function SeoHead({
   locale,
   noIndex = false,
   type = 'website',
+  image,
   structuredData,
 }: SeoMetadata) {
   const location = useLocation();
@@ -69,6 +73,7 @@ export function SeoHead({
   const canonicalUrl = absoluteUrl(canonicalPath);
   const enUrl = absoluteUrl(localePath('en', subPath));
   const arUrl = absoluteUrl(localePath('ar', subPath));
+  const ogImageUrl = absoluteMediaUrl(image || DEFAULT_OG_IMAGE);
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
   const jsonLdItems = structuredData
@@ -89,11 +94,13 @@ export function SeoHead({
       `<meta property="og:title" content="${escapeAttr(title)}" />`,
       `<meta property="og:description" content="${escapeAttr(description)}" />`,
       `<meta property="og:url" content="${escapeAttr(canonicalUrl)}" />`,
+      `<meta property="og:image" content="${escapeAttr(ogImageUrl)}" />`,
       `<meta property="og:locale" content="${locale === 'ar' ? 'ar_AR' : 'en_US'}" />`,
       `<meta property="og:site_name" content="${escapeAttr(siteConfig.brandName)}" />`,
       `<meta name="twitter:card" content="summary_large_image" />`,
       `<meta name="twitter:title" content="${escapeAttr(title)}" />`,
       `<meta name="twitter:description" content="${escapeAttr(description)}" />`,
+      `<meta name="twitter:image" content="${escapeAttr(ogImageUrl)}" />`,
     ];
 
     if (noIndex) {
@@ -148,9 +155,11 @@ export function SeoHead({
     upsertMeta('property', 'og:title', title);
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:url', canonicalUrl);
+    upsertMeta('property', 'og:image', ogImageUrl);
     upsertMeta('property', 'og:locale', locale === 'ar' ? 'ar_AR' : 'en_US');
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
+    upsertMeta('name', 'twitter:image', ogImageUrl);
 
     if (noIndex) {
       upsertMeta('name', 'robots', 'noindex, nofollow');
@@ -177,7 +186,7 @@ export function SeoHead({
       script.textContent = JSON.stringify(item);
       document.head.appendChild(script);
     }
-  }, [title, description, canonicalUrl, enUrl, arUrl, locale, type, noIndex, jsonLdItems]);
+  }, [title, description, canonicalUrl, enUrl, arUrl, ogImageUrl, locale, type, noIndex, jsonLdItems]);
 
   return null;
 }

@@ -1,4 +1,5 @@
 import {ArrowLeft, ArrowRight, Check, MessageSquare} from 'lucide-react';
+import {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {SeoHead} from '../components/SeoHead';
 import {ServiceIcon} from '../components/ServiceIcon';
@@ -8,6 +9,7 @@ import {Container} from '../components/ui/Container';
 import {buildWhatsAppUrl, siteConfig} from '../config/site';
 import {getServiceBySlug} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
+import {trackServiceView, trackWhatsAppClick} from '../services/analytics';
 import {ROUTE_SEGMENTS} from '../utils/routes';
 import {NotFoundPage} from './NotFoundPage';
 
@@ -15,6 +17,12 @@ export function ServiceDetailPage() {
   const {slug} = useParams<{slug: string}>();
   const {locale, dir, t, to} = useLocale();
   const service = getServiceBySlug(slug);
+
+  useEffect(() => {
+    if (service) {
+      trackServiceView(service.slug, locale);
+    }
+  }, [service?.slug, locale]);
 
   if (!service) {
     return <NotFoundPage />;
@@ -98,6 +106,7 @@ export function ServiceDetailPage() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick('service_detail', service.slug, locale)}
                     className="inline-flex min-h-[48px] items-center gap-2 rounded-lg border border-[var(--nt-border-strong)] px-5 py-3 text-sm font-semibold text-[var(--nt-text)] hover:bg-[var(--nt-surface-elevated)] transition-colors"
                   >
                     <MessageSquare className="h-4 w-4 text-[#16C7D9] shrink-0" aria-hidden="true" />

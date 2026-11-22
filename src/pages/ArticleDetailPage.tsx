@@ -5,7 +5,7 @@ import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
 import {MediaFrame} from '../components/ui/MediaFrame';
-import {siteConfig} from '../config/site';
+import {absoluteMediaUrl, siteConfig} from '../config/site';
 import {getInsightBySlug} from '../content/insights';
 import {getServiceBySlug} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
@@ -23,12 +23,14 @@ export function ArticleDetailPage() {
 
   const relatedService = getServiceBySlug(article.relatedServiceSlug);
   const BackArrow = dir === 'rtl' ? ArrowRight : ArrowLeft;
+  const articleImageUrl = absoluteMediaUrl(article.image);
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description: article.summary,
+    image: articleImageUrl,
     datePublished: article.publishedAt,
     inLanguage: locale,
     author: {
@@ -49,6 +51,7 @@ export function ArticleDetailPage() {
         description={article.summary}
         locale={locale}
         type="article"
+        image={article.image}
         structuredData={articleJsonLd}
       />
 

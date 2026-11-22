@@ -32,6 +32,14 @@ export function resolveMediaUrl(relativePath: string): string {
   return `${base}/${clean}`;
 }
 
+export function absoluteMediaUrl(relativePath: string): string {
+  const resolved = resolveMediaUrl(relativePath);
+  if (/^https?:\/\//i.test(resolved)) {
+    return resolved;
+  }
+  return `${siteConfig.siteUrl}${resolved}`;
+}
+
 export function buildWhatsAppUrl(message: string): string | null {
   if (!siteConfig.whatsappNumber) {
     return null;

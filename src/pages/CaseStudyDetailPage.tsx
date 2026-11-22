@@ -5,7 +5,7 @@ import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
 import {MediaFrame} from '../components/ui/MediaFrame';
-import {siteConfig} from '../config/site';
+import {absoluteMediaUrl, siteConfig} from '../config/site';
 import {getPortfolioBySlug} from '../content/portfolio';
 import {getServiceBySlug} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
@@ -25,12 +25,28 @@ export function CaseStudyDetailPage() {
   const service = getServiceBySlug(item.serviceSlug);
   const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
 
+  const caseStudyJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: copy.title,
+    description: copy.shortDescription,
+    image: absoluteMediaUrl(item.image),
+    inLanguage: locale,
+    creator: {
+      '@type': 'Organization',
+      name: siteConfig.brandName,
+      url: siteConfig.siteUrl,
+    },
+  };
+
   return (
     <>
       <SeoHead
         title={`${copy.title} — ${siteConfig.brandName}`}
         description={copy.shortDescription}
         locale={locale}
+        image={item.image}
+        structuredData={caseStudyJsonLd}
       />
 
       <section className="border-b border-[var(--nt-border)] bg-[var(--nt-surface)] py-12 sm:py-16">

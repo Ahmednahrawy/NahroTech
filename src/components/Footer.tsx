@@ -1,13 +1,16 @@
 import {Mail, MessageSquare} from 'lucide-react';
 import {Link} from 'react-router-dom';
 import {buildWhatsAppUrl, siteConfig} from '../config/site';
+import {useConsent} from '../context/ConsentContext';
 import {useLocale} from '../i18n/LocaleContext';
+import {trackWhatsAppClick} from '../services/analytics';
 import {LEGAL_SLUGS, ROUTE_SEGMENTS} from '../utils/routes';
 import {Container} from './ui/Container';
 import {Wordmark} from './Wordmark';
 
 export function Footer() {
-  const {t, to} = useLocale();
+  const {locale, t, to} = useLocale();
+  const {resetConsent} = useConsent();
   const year = new Date().getFullYear();
   const whatsappUrl = buildWhatsAppUrl(t.footer.whatsappDefaultMessage);
 
@@ -104,6 +107,7 @@ export function Footer() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('footer', 'general', locale)}
                 className="flex items-center gap-2 text-sm hover:text-[var(--nt-text)] transition-colors"
               >
                 <MessageSquare
@@ -124,6 +128,13 @@ export function Footer() {
           <p className="tabular-nums">
             &copy; {year} {t.footer.copyright}
           </p>
+          <button
+            type="button"
+            onClick={resetConsent}
+            className="hover:text-[var(--nt-text)] underline-offset-4 hover:underline cursor-pointer transition-colors"
+          >
+            {t.consent.managePreferences}
+          </button>
         </div>
       </Container>
     </footer>

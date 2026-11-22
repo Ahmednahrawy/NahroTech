@@ -349,6 +349,20 @@ export const en: TranslationDictionary = {
       },
     },
   },
+  consent: {
+    ariaLabel: 'Privacy and analytics cookie preferences',
+    title: 'Cookie & Analytics Preferences',
+    description:
+      'NahroTech uses essential browser storage to remember your theme and language. Optional privacy-respecting Google Analytics is enabled only with your permission.',
+    acceptLabel: 'Accept Analytics',
+    declineLabel: 'Essential Only',
+    cookiePolicyLabel: 'Cookie Policy',
+    managePreferences: 'Cookie Preferences',
+    floatingWhatsappLabel: 'Chat with NahroTech on WhatsApp',
+    floatingWhatsappConsultationMessage:
+      'Hello NahroTech, I would like to schedule a business or technical consultation.',
+    floatingWhatsappPortfolioPrefix: 'Hello NahroTech, I would like to discuss a solution similar to:',
+  },
   footer: {
     positioning:
       'Creative technology and business-solutions studio helping individuals and organizations build practical digital systems.',

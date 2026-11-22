@@ -1,13 +1,15 @@
 import {Check, MessageSquare} from 'lucide-react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {SeoHead} from '../components/SeoHead';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
 import {MediaFrame} from '../components/ui/MediaFrame';
-import {buildWhatsAppUrl, siteConfig} from '../config/site';
+import {absoluteMediaUrl, buildWhatsAppUrl, siteConfig} from '../config/site';
 import {PRODUCT_CATEGORIES, getProductBySlug} from '../content/products';
 import {useLocale} from '../i18n/LocaleContext';
+import {trackProductView, trackWhatsAppClick} from '../services/analytics';
 import {ROUTE_SEGMENTS} from '../utils/routes';
 import {NotFoundPage} from './NotFoundPage';
 
@@ -15,6 +17,12 @@ export function ProductDetailPage() {
   const {slug} = useParams<{slug: string}>();
   const {locale, t, to} = useLocale();
   const product = getProductBySlug(slug);
+
+  useEffect(() => {
+    if (product) {
+      trackProductView(product.slug, product.category, locale);
+    }
+  }, [product?.slug, product?.category, locale]);
 
   if (!product) {
     return <NotFoundPage />;
@@ -24,12 +32,14 @@ export function ProductDetailPage() {
   const categoryLabel =
     PRODUCT_CATEGORIES.find((c) => c.id === product.category)?.label[locale] || '';
   const whatsappHref = buildWhatsAppUrl(copy.whatsappInquiryMessage);
+  const productImageUrl = absoluteMediaUrl(product.image);
 
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: copy.name,
     description: copy.shortDescription,
+    image: productImageUrl,
     category: categoryLabel,
     brand: {
       '@type': 'Brand',
@@ -53,6 +63,7 @@ export function ProductDetailPage() {
         title={`${copy.name} — ${siteConfig.brandName}`}
         description={copy.shortDescription}
         locale={locale}
+        image={product.image}
         structuredData={productJsonLd}
       />
 
@@ -108,6 +119,7 @@ export function ProductDetailPage() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick('product_detail', product.slug, locale)}
                     className="inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-[#101B35] px-5 py-3 text-sm font-semibold text-white hover:bg-[#1A2B52] dark:bg-[#16C7D9] dark:text-[#091122] transition-colors"
                   >
                     <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />

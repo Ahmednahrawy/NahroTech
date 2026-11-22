@@ -8,6 +8,7 @@ import {Container} from '../components/ui/Container';
 import {buildWhatsAppUrl, siteConfig} from '../config/site';
 import {SERVICES} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
+import {trackInquirySubmitted, trackWhatsAppClick} from '../services/analytics';
 import {web3FormsContactProvider} from '../services/contactService';
 import {cn} from '../utils/cn';
 import {ROUTE_SEGMENTS} from '../utils/routes';
@@ -133,6 +134,7 @@ export function ContactPage() {
 
     if (result.ok) {
       setStatus('success');
+      trackInquirySubmitted(intent, service || 'general', locale);
       return;
     }
 
@@ -476,6 +478,7 @@ export function ContactPage() {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackWhatsAppClick('contact_sidebar', intent, locale)}
                       className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-[#101B35] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1A2B52] dark:bg-[#16C7D9] dark:text-[#091122] transition-colors"
                     >
                       {t.actions.chatWhatsApp}

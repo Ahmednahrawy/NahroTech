@@ -265,6 +265,18 @@ export interface TranslationDictionary {
       }
     >;
   };
+  consent: {
+    ariaLabel: string;
+    title: string;
+    description: string;
+    acceptLabel: string;
+    declineLabel: string;
+    cookiePolicyLabel: string;
+    managePreferences: string;
+    floatingWhatsappLabel: string;
+    floatingWhatsappConsultationMessage: string;
+    floatingWhatsappPortfolioPrefix: string;
+  };
   footer: {
     positioning: string;
     navigationTitle: string;

@@ -349,6 +349,19 @@ export const ar: TranslationDictionary = {
       },
     },
   },
+  consent: {
+    ariaLabel: 'تفضيلات الخصوصية وملفات تعريف الارتباط',
+    title: 'تفضيلات الخصوصية والتحليلات',
+    description:
+      'يستخدم موقع نحروتك التخزين الأساسي لحفظ تفضيلات اللغة والمظهر. لا يتم تفعيل إحصائيات Google Analytics الاختيارية إلا بعد موافقتك.',
+    acceptLabel: 'قبول التحليلات',
+    declineLabel: 'الأساسية فقط',
+    cookiePolicyLabel: 'سياسة ملفات الارتباط',
+    managePreferences: 'إعدادات ملفات الارتباط',
+    floatingWhatsappLabel: 'تواصل مع نحروتك عبر واتساب',
+    floatingWhatsappConsultationMessage: 'مرحباً نحروتك، أرغب في حجز جلسة استشارية لأعمالنا.',
+    floatingWhatsappPortfolioPrefix: 'مرحباً نحروتك، أود مناقشة حل تقني مشابه للمشروع التالي:',
+  },
   footer: {
     positioning:
       'شركة تقنية إبداعية وحلول أعمال تساعد الأفراد والمؤسسات على بناء أنظمة رقمية عملية.',

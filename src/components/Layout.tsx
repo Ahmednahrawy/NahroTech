@@ -1,12 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import {useConsent} from '../context/ConsentContext';
 import {useLocale} from '../i18n/LocaleContext';
+import {trackPageView} from '../services/analytics';
+import {ConsentBanner} from './ConsentBanner';
+import {FloatingWhatsApp} from './FloatingWhatsApp';
 import {Footer} from './Footer';
 import {Header} from './Header';
 import {SearchModal} from './SearchModal';
 
 export function Layout({children}: {children: React.ReactNode}) {
-  const {t} = useLocale();
+  const {locale, t} = useLocale();
+  const {consent, ready} = useConsent();
+  const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    if (!ready || consent !== 'granted') {
+      return;
+    }
+    trackPageView(`${location.pathname}${location.search}`, locale);
+  }, [consent, ready, location.pathname, location.search, locale]);
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--nt-bg)] text-[var(--nt-text)]">
@@ -25,6 +39,8 @@ export function Layout({children}: {children: React.ReactNode}) {
 
       <Footer />
 
+      <FloatingWhatsApp />
+      <ConsentBanner />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
