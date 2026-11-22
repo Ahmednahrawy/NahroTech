@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Brand Core */
+  --nt-navy: #101B35;
+  --nt-blue: #176BCE;
+  --nt-blue-hover: #1258AE;
+  --nt-cyan: #16C7D9;
+  --nt-cyan-hover: #10A7B8;
+
+  /* Light Theme Surfaces & Text */
+  --nt-bg: #F4F7FC;
+  --nt-surface: #FFFFFF;
+  --nt-surface-elevated: #EDF2FA;
+  --nt-border: #D6E0EE;
+  --nt-border-strong: #B9C8DF;
+  --nt-text: #101B35;
+  --nt-text-secondary: #41516E;
+  --nt-text-muted: #61718D;
+
+  /* Semantic States */
+  --nt-success: #0D8A5E;
+  --nt-success-bg: #E7F7F0;
+  --nt-warning: #B45309;
+  --nt-warning-bg: #FEF3C7;
+  --nt-error: #C81E1E;
+  --nt-error-bg: #FDE8E8;
+
+  /* Typography */
+  --font-en: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.dark {
+  --nt-bg: #091122;
+  --nt-surface: #101B35;
+  --nt-surface-elevated: #162342;
+  --nt-border: #223359;
+  --nt-border-strong: #32487A;
+  --nt-text: #F4F7FC;
+  --nt-text-secondary: #C2CEE2;
+  --nt-text-muted: #8FA3C4;
+
+  --nt-blue-hover: #2C82EB;
+  --nt-cyan-hover: #2AD9EC;
+
+  --nt-success: #34D399;
+  --nt-success-bg: rgba(16, 185, 129, 0.14);
+  --nt-warning: #FBBF24;
+  --nt-warning-bg: rgba(245, 158, 11, 0.14);
+  --nt-error: #F87171;
+  --nt-error-bg: rgba(239, 68, 68, 0.14);
+}
+
+@layer base {
+  html {
+    background-color: var(--nt-bg);
+    color: var(--nt-text);
+    font-family: var(--font-en);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[lang="ar"] {
+    font-family: var(--font-ar);
+  }
+
+  body {
+    background-color: var(--nt-bg);
+    color: var(--nt-text);
+    min-height: 100vh;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--nt-cyan);
+    outline-offset: 2px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

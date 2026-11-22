@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!--app-head-->
+    <title>NahrTech — Think Smart. Build Better.</title>
+    <meta
+      name="description"
+      content="NahrTech is a creative technology and business-solutions company helping individuals and organizations build practical digital systems, analytics, and automation."
+    />
+    <meta property="og:title" content="NahrTech — Think Smart. Build Better." />
+    <meta
+      property="og:description"
+      content="Creative technology and business-solutions company turning business challenges into practical digital systems, BI dashboards, and automation."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NahrTech" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem('nahrtech-theme');
+          var prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
