@@ -1,16 +1,24 @@
 import {useEffect} from 'react';
-import {Link, Outlet, Route, Routes, useNavigate, useParams} from 'react-router-dom';
+import {Link, Outlet, Route, Routes, useNavigate} from 'react-router-dom';
 import {Layout} from './components/Layout';
 import {Locale, siteConfig} from './config/site';
+import {SERVICES} from './content/services';
 import {LocaleProvider} from './i18n/LocaleContext';
+import {AboutPage} from './pages/AboutPage';
+import {ContactPage} from './pages/ContactPage';
 import {HomePage} from './pages/HomePage';
+import {LegalPage} from './pages/LegalPage';
 import {NotFoundPage} from './pages/NotFoundPage';
-import {LegalScaffoldPage, SectionScaffoldPage} from './pages/SectionScaffoldPage';
-import {LEGAL_SLUGS, LegalSlug, ROUTE_SEGMENTS, localePath} from './utils/routes';
+import {SectionScaffoldPage} from './pages/SectionScaffoldPage';
+import {ServiceDetailPage} from './pages/ServiceDetailPage';
+import {ServicesPage} from './pages/ServicesPage';
+import {SolutionsPage} from './pages/SolutionsPage';
+import {LEGAL_SLUGS, ROUTE_SEGMENTS, localePath} from './utils/routes';
 
 export const STATIC_SUBPATHS: string[] = [
   '',
   ROUTE_SEGMENTS.services,
+  ...SERVICES.map((s) => `${ROUTE_SEGMENTS.services}/${s.slug}`),
   ROUTE_SEGMENTS.solutions,
   ROUTE_SEGMENTS.portfolio,
   ROUTE_SEGMENTS.store,
@@ -66,27 +74,19 @@ function LocalizedShell({locale}: {locale: Locale}) {
   );
 }
 
-function LegalRouteSwitch() {
-  const {slug} = useParams<{slug: string}>();
-  const isKnownSlug = LEGAL_SLUGS.includes(slug as LegalSlug);
-  if (!isKnownSlug) {
-    return <NotFoundPage />;
-  }
-  return <LegalScaffoldPage slug={slug as LegalSlug} />;
-}
-
 function localeChildRoutes() {
   return (
     <>
       <Route index element={<HomePage />} />
-      <Route path={ROUTE_SEGMENTS.services} element={<SectionScaffoldPage section="services" />} />
-      <Route path={ROUTE_SEGMENTS.solutions} element={<SectionScaffoldPage section="solutions" />} />
+      <Route path={ROUTE_SEGMENTS.services} element={<ServicesPage />} />
+      <Route path={`${ROUTE_SEGMENTS.services}/:slug`} element={<ServiceDetailPage />} />
+      <Route path={ROUTE_SEGMENTS.solutions} element={<SolutionsPage />} />
       <Route path={ROUTE_SEGMENTS.portfolio} element={<SectionScaffoldPage section="portfolio" />} />
       <Route path={ROUTE_SEGMENTS.store} element={<SectionScaffoldPage section="store" />} />
       <Route path={ROUTE_SEGMENTS.insights} element={<SectionScaffoldPage section="insights" />} />
-      <Route path={ROUTE_SEGMENTS.about} element={<SectionScaffoldPage section="about" />} />
-      <Route path={ROUTE_SEGMENTS.contact} element={<SectionScaffoldPage section="contact" />} />
-      <Route path={`${ROUTE_SEGMENTS.legal}/:slug`} element={<LegalRouteSwitch />} />
+      <Route path={ROUTE_SEGMENTS.about} element={<AboutPage />} />
+      <Route path={ROUTE_SEGMENTS.contact} element={<ContactPage />} />
+      <Route path={`${ROUTE_SEGMENTS.legal}/:slug`} element={<LegalPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </>
   );

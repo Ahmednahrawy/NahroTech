@@ -105,7 +105,7 @@ describe('Phase 1 Foundation App', () => {
     expect(document.documentElement.lang).toBe('ar');
     expect(document.documentElement.dir).toBe('rtl');
     expect(
-      screen.getByRole('heading', {name: /خدمات مترابطة لتنفيذ الأعمال بكفاءة/i}),
+      screen.getByRole('heading', {name: /خدمات مصممة كحلول أعمال مترابطة/i}),
     ).toBeInTheDocument();
   });
 });

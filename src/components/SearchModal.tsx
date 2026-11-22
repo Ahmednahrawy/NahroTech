@@ -1,6 +1,8 @@
 import {ArrowLeft, ArrowRight, Search, X} from 'lucide-react';
 import {useEffect, useMemo, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {SERVICES} from '../content/services';
+import {INDUSTRY_OPTIONS} from '../content/solutions';
 import {useLocale} from '../i18n/LocaleContext';
 import {LEGAL_SLUGS, ROUTE_SEGMENTS} from '../utils/routes';
 
@@ -18,7 +20,7 @@ export function SearchModal({
   open: boolean;
   onClose: () => void;
 }) {
-  const {t, to, dir} = useLocale();
+  const {locale, t, to, dir} = useLocale();
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -94,6 +96,20 @@ export function SearchModal({
       },
     ];
 
+    const serviceEntries: SearchEntry[] = SERVICES.map((service) => ({
+      title: service.content[locale].title,
+      description: service.content[locale].summary,
+      path: to(`${ROUTE_SEGMENTS.services}/${service.slug}`),
+      section: t.nav.services,
+    }));
+
+    const industryEntries: SearchEntry[] = INDUSTRY_OPTIONS.map((ind) => ({
+      title: ind.content[locale].name,
+      description: ind.content[locale].summary,
+      path: `${to(ROUTE_SEGMENTS.solutions)}?industry=${ind.id}`,
+      section: t.nav.solutions,
+    }));
+
     const legalPages: SearchEntry[] = LEGAL_SLUGS.map((slug) => ({
       title: t.legal.items[slug].title,
       description: t.legal.items[slug].summary,
@@ -101,8 +117,8 @@ export function SearchModal({
       section: t.legal.sectionTitle,
     }));
 
-    return [...pages, ...legalPages];
-  }, [t, to]);
+    return [...pages, ...serviceEntries, ...industryEntries, ...legalPages];
+  }, [locale, t, to]);
 
   const results = useMemo(() => {
     const trimmed = query.trim().toLowerCase();
