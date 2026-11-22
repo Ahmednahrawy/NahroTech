@@ -9,7 +9,7 @@ function normalizeSiteBasePath(raw?: string): string {
 
 export const siteConfig = {
   brandName: 'NahroTech',
-  brandNameAr: 'نهرو تك',
+  brandNameAr: 'نحروتك',
   sloganEn: 'Think Smart. Build Better.',
   sloganAr: 'فكّر بذكاء. ابنِ بجودة أفضل.',
   defaultLocale: 'en' as Locale,
