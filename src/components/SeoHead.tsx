@@ -167,13 +167,13 @@ export function SeoHead({
     upsertLink('alternate', enUrl, 'x-default');
 
     document.head
-      .querySelectorAll('script[data-nahrtech-jsonld="true"]')
+      .querySelectorAll('script[data-nahrotech-jsonld="true"]')
       .forEach((node) => node.remove());
 
     for (const item of jsonLdItems) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
-      script.setAttribute('data-nahrtech-jsonld', 'true');
+      script.setAttribute('data-nahrotech-jsonld', 'true');
       script.textContent = JSON.stringify(item);
       document.head.appendChild(script);
     }

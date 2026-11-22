@@ -1,6 +1,8 @@
 {
-  "name": "NahrTech",
-  "description": "NahrTech — Creative technology and business-solutions company. Think Smart. Build Better.",
+  "name": "NahroTech",
+  "description": "NahroTech — Creative technology and business-solutions company. Think Smart. Build Better.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

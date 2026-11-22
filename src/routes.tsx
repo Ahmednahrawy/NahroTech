@@ -30,7 +30,7 @@ function RootRedirect() {
   useEffect(() => {
     let targetLocale: Locale = siteConfig.defaultLocale;
     try {
-      const saved = localStorage.getItem('nahrtech-locale');
+      const saved = localStorage.getItem('nahrotech-locale');
       if (saved === 'ar' || saved === 'en') {
         targetLocale = saved;
       } else if (typeof navigator !== 'undefined' && navigator.language?.startsWith('ar')) {

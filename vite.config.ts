@@ -4,8 +4,13 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+function normalizeBasePath(raw?: string): string {
+  const collapsed = (raw || '/').replace(/\/+/g, '/');
+  return collapsed.endsWith('/') ? collapsed : `${collapsed}/`;
+}
+
 export default defineConfig(({isSsrBuild}) => {
-  const base = process.env.VITE_BASE_PATH || '/';
+  const base = normalizeBasePath(process.env.VITE_BASE_PATH);
 
   return {
     base,

@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -34,16 +34,31 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build project
-        run: npm run build
-
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Type check
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test:run
+
+      - name: Build and prerender site
+        env:
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || format('{0}/', steps.pages.outputs.base_path) }}
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || steps.pages.outputs.origin }}
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
+          VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
+          VITE_WEB3FORMS_KEY: ${{ vars.VITE_WEB3FORMS_KEY }}
+          VITE_GA4_ID: ${{ vars.VITE_GA4_ID }}
+          VITE_MEDIA_CDN_URL: ${{ vars.VITE_MEDIA_CDN_URL }}
+        run: npm run build
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/public/.'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment

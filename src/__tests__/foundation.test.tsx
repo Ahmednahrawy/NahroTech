@@ -71,6 +71,8 @@ describe('Phase 1 Foundation App', () => {
     ).toBeInTheDocument();
     const mainNav = screen.getByRole('navigation', {name: 'التنقل الرئيسي'});
     expect(within(mainNav).getByRole('link', {name: 'الخدمات'})).toBeInTheDocument();
+    const banner = screen.getByRole('banner');
+    expect(within(banner).getByRole('link', {name: /NahroTech/i})).toBeInTheDocument();
   });
 
   it('toggles light/dark theme class on documentElement', () => {

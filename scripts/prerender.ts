@@ -21,6 +21,11 @@ const distDir = path.resolve(rootDir, 'dist');
 const ssrDir = path.resolve(rootDir, 'dist-ssr');
 const templatePath = path.resolve(distDir, 'index.html');
 
+function normalizeCleanBase(raw?: string): string {
+  const collapsed = (raw || '/').replace(/\/+/g, '/').replace(/\/+$/, '');
+  return collapsed;
+}
+
 function stripDefaultSeoTags(template: string): string {
   return template
     .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
@@ -32,16 +37,15 @@ function stripDefaultSeoTags(template: string): string {
     .replace(/<meta\s+name="twitter:card"[\s\S]*?\/>\s*/i, '');
 }
 
-function buildRootRedirectHtml(template: string, basePath: string, siteUrl: string): string {
-  const cleanBase = basePath === '/' ? '' : basePath.replace(/\/+$/, '');
+function buildRootRedirectHtml(template: string, cleanBase: string, siteUrl: string): string {
   const enPath = `${cleanBase}/en/`;
   const arPath = `${cleanBase}/ar/`;
   const enCanonical = `${siteUrl}${cleanBase}/en`;
   const arCanonical = `${siteUrl}${cleanBase}/ar`;
 
   const headTags = [
-    `<title>NahrTech — Think Smart. Build Better.</title>`,
-    `<meta name="description" content="NahrTech — Creative technology and business-solutions company. Choose English or Arabic." />`,
+    `<title>NahroTech — Think Smart. Build Better.</title>`,
+    `<meta name="description" content="NahroTech — Creative technology and business-solutions company. Choose English or Arabic." />`,
     `<link rel="canonical" href="${enCanonical}" />`,
     `<link rel="alternate" hreflang="en" href="${enCanonical}" />`,
     `<link rel="alternate" hreflang="ar" href="${arCanonical}" />`,
@@ -50,7 +54,7 @@ function buildRootRedirectHtml(template: string, basePath: string, siteUrl: stri
     `<script>
       (function () {
         try {
-          var saved = localStorage.getItem('nahrtech-locale');
+          var saved = localStorage.getItem('nahrotech-locale');
           var lang = (saved === 'ar' || saved === 'en')
             ? saved
             : (navigator.language && navigator.language.indexOf('ar') === 0 ? 'ar' : 'en');
@@ -65,7 +69,7 @@ function buildRootRedirectHtml(template: string, basePath: string, siteUrl: stri
   const bodyFallback = `
     <main style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;padding:2rem;text-align:center;">
       <div>
-        <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:0.75rem;">NahrTech</h1>
+        <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:0.75rem;">NahroTech</h1>
         <p style="margin-bottom:1rem;">Select your language / اختر اللغة</p>
         <p>
           <a href="${enPath}" style="margin-right:1rem;color:#176BCE;font-weight:600;">English</a>
@@ -80,8 +84,7 @@ function buildRootRedirectHtml(template: string, basePath: string, siteUrl: stri
     .replace('<!--app-html-->', bodyFallback);
 }
 
-function buildSitemapXml(routes: string[], siteUrl: string, basePath: string): string {
-  const cleanBase = basePath === '/' ? '' : basePath.replace(/\/+$/, '');
+function buildSitemapXml(routes: string[], siteUrl: string, cleanBase: string): string {
   const now = new Date().toISOString().split('T')[0];
 
   const urls = routes
@@ -94,8 +97,7 @@ function buildSitemapXml(routes: string[], siteUrl: string, basePath: string): s
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
-function buildRobotsTxt(siteUrl: string, basePath: string): string {
-  const cleanBase = basePath === '/' ? '' : basePath.replace(/\/+$/, '');
+function buildRobotsTxt(siteUrl: string, cleanBase: string): string {
   return `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}${cleanBase}/sitemap.xml\n`;
 }
 
@@ -116,8 +118,8 @@ async function run() {
   const rawTemplate = fs.readFileSync(templatePath, 'utf-8');
   const cleanTemplate = stripDefaultSeoTags(rawTemplate);
 
-  const siteUrl = (process.env.VITE_SITE_URL || 'https://nahrtech.com').replace(/\/+$/, '');
-  const basePath = process.env.VITE_BASE_PATH || '/';
+  const siteUrl = (process.env.VITE_SITE_URL || 'https://nahrotech.com').replace(/\/+$/, '');
+  const cleanBase = normalizeCleanBase(process.env.VITE_BASE_PATH);
 
   // Render every static route into dist/<route>/index.html
   for (const route of serverModule.PRERENDER_ROUTES) {
@@ -145,18 +147,18 @@ async function run() {
   fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf-8');
 
   // Render root index.html redirect & language chooser
-  const rootHtml = buildRootRedirectHtml(rawTemplate, basePath, siteUrl);
+  const rootHtml = buildRootRedirectHtml(rawTemplate, cleanBase, siteUrl);
   fs.writeFileSync(templatePath, rootHtml, 'utf-8');
 
   // Generate sitemap.xml & robots.txt
   fs.writeFileSync(
     path.join(distDir, 'sitemap.xml'),
-    buildSitemapXml(serverModule.PRERENDER_ROUTES, siteUrl, basePath),
+    buildSitemapXml(serverModule.PRERENDER_ROUTES, siteUrl, cleanBase),
     'utf-8',
   );
   fs.writeFileSync(
     path.join(distDir, 'robots.txt'),
-    buildRobotsTxt(siteUrl, basePath),
+    buildRobotsTxt(siteUrl, cleanBase),
     'utf-8',
   );
 

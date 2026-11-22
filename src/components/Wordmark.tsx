@@ -8,7 +8,7 @@ interface WordmarkProps {
 }
 
 /**
- * Typography-first NahrTech geometric wordmark with distinctive N and T treatments
+ * Typography-first NahroTech geometric wordmark with distinctive N and T treatments
  * accented in Electric Blue (#176BCE) and Cyan (#16C7D9).
  */
 export function Wordmark({variant = 'auto', className}: WordmarkProps) {
@@ -52,7 +52,7 @@ export function Wordmark({variant = 'auto', className}: WordmarkProps) {
           className={cn('absolute -bottom-1 start-0 end-0 h-[2.5px] rounded-full', barAccentClass)}
         />
       </span>
-      <span>ahr</span>
+      <span>ahro</span>
       <span className={cn('relative inline-block', tAccentClass)}>T</span>
       <span>ech</span>
     </span>

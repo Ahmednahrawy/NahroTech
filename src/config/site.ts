@@ -2,15 +2,20 @@ export type Locale = 'en' | 'ar';
 
 const env = (typeof import.meta !== 'undefined' && import.meta.env) || ({} as Record<string, string | undefined>);
 
+function normalizeSiteBasePath(raw?: string): string {
+  const collapsed = (raw || '/').replace(/\/+/g, '/').replace(/\/+$/, '');
+  return collapsed || '/';
+}
+
 export const siteConfig = {
-  brandName: 'NahrTech',
-  brandNameAr: 'نهر تك',
+  brandName: 'NahroTech',
+  brandNameAr: 'نهرو تك',
   sloganEn: 'Think Smart. Build Better.',
   sloganAr: 'فكّر بذكاء. ابنِ بجودة أفضل.',
   defaultLocale: 'en' as Locale,
   supportedLocales: ['en', 'ar'] as const,
-  basePath: (env.VITE_BASE_PATH || '/').replace(/\/+$/, '') || '/',
-  siteUrl: (env.VITE_SITE_URL || 'https://nahrtech.com').replace(/\/+$/, ''),
+  basePath: normalizeSiteBasePath(env.VITE_BASE_PATH),
+  siteUrl: (env.VITE_SITE_URL || 'https://nahrotech.com').replace(/\/+$/, ''),
   contactEmail: (env.VITE_CONTACT_EMAIL || '').trim(),
   whatsappNumber: (env.VITE_WHATSAPP_NUMBER || '').replace(/[^\d]/g, ''),
   web3formsKey: (env.VITE_WEB3FORMS_KEY || '').trim(),

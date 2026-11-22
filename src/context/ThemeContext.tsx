@@ -10,7 +10,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-const STORAGE_KEY = 'nahrtech-theme';
+const STORAGE_KEY = 'nahrotech-theme';
 
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') {

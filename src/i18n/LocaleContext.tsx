@@ -41,7 +41,7 @@ export function LocaleProvider({
     document.documentElement.lang = locale;
     document.documentElement.dir = dir;
     try {
-      localStorage.setItem('nahrtech-locale', locale);
+      localStorage.setItem('nahrotech-locale', locale);
     } catch {
       // Ignore storage access restrictions
     }

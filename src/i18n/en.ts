@@ -2,11 +2,11 @@ import {TranslationDictionary} from './types';
 
 export const en: TranslationDictionary = {
   meta: {
-    siteName: 'NahrTech',
+    siteName: 'NahroTech',
     slogan: 'Think Smart. Build Better.',
-    defaultTitle: 'NahrTech — Creative Technology & Business Solutions',
+    defaultTitle: 'NahroTech — Creative Technology & Business Solutions',
     defaultDescription:
-      'NahrTech helps individuals and organizations turn ideas and operational challenges into practical digital systems, BI dashboards, and automation.',
+      'NahroTech helps individuals and organizations turn ideas and operational challenges into practical digital systems, BI dashboards, and automation.',
   },
   a11y: {
     skipToContent: 'Skip to main content',
@@ -40,7 +40,7 @@ export const en: TranslationDictionary = {
     viewServices: 'Explore Services',
     contactUs: 'Contact Us',
     searchPlaceholder: 'Search pages, services, or solutions...',
-    searchLabel: 'Search NahrTech',
+    searchLabel: 'Search NahroTech',
     searchEmpty: 'No matching pages found for your query.',
     searchHint: 'Type to search across services, solutions, digital store, and legal pages.',
     goHome: 'Return to Home',
@@ -56,13 +56,13 @@ export const en: TranslationDictionary = {
   },
   pages: {
     home: {
-      title: 'NahrTech — Think Smart. Build Better.',
+      title: 'NahroTech — Think Smart. Build Better.',
       description:
-        'NahrTech is an integrated creative technology and business-solutions studio delivering data analytics, Excel automation, web/mobile apps, and AI workflows.',
+        'NahroTech is an integrated creative technology and business-solutions studio delivering data analytics, Excel automation, web/mobile apps, and AI workflows.',
       eyebrow: 'Creative Technology & Business Solutions',
       headline: 'Turn business complexity into clear, practical digital systems.',
       subheadline:
-        'NahrTech partners with entrepreneurs, growing businesses, and organizations to solve operational bottlenecks through data intelligence, custom software, and pragmatic automation.',
+        'NahroTech partners with entrepreneurs, growing businesses, and organizations to solve operational bottlenecks through data intelligence, custom software, and pragmatic automation.',
       positioningTitle: 'Built around real business outcomes',
       positioningBody:
         'We combine business understanding with technical execution across three core pillars.',
@@ -89,10 +89,10 @@ export const en: TranslationDictionary = {
       foundationNoticeTitle: 'Core Capabilities & Site Sections',
       foundationNoticeBody:
         'Explore our bilingual routing, theme architecture, and foundational pages ready for Phase 2 content expansion.',
-      quickLinksTitle: 'Navigate NahrTech',
+      quickLinksTitle: 'Navigate NahroTech',
     },
     services: {
-      title: 'Services — NahrTech',
+      title: 'Services — NahroTech',
       description:
         'Six connected service areas spanning Data & BI, Excel automation, Business Management Systems, Web, Mobile, and AI workflows.',
       heading: 'Services designed for practical business execution',
@@ -100,7 +100,7 @@ export const en: TranslationDictionary = {
         'From Power BI dashboards and automated spreadsheets to web applications and AI-assisted workflows.',
     },
     solutions: {
-      title: 'Industry & Function Solutions — NahrTech',
+      title: 'Industry & Function Solutions — NahroTech',
       description:
         'Explore tailored solutions by industry, business function, and organization size.',
       heading: 'Solutions by industry, function, and scale',
@@ -108,23 +108,23 @@ export const en: TranslationDictionary = {
         'Structured digital approaches for Retail, Wholesale, Manufacturing, and Service businesses.',
     },
     portfolio: {
-      title: 'Portfolio & Case Studies — NahrTech',
+      title: 'Portfolio & Case Studies — NahroTech',
       description:
-        'Selected work, concept demonstrations, and structured engineering case studies by NahrTech.',
+        'Selected work, concept demonstrations, and structured engineering case studies by NahroTech.',
       heading: 'Selected projects and demonstrations',
       subheading:
         'Filterable by industry, service discipline, and technology stack.',
     },
     store: {
-      title: 'Digital Store — NahrTech',
+      title: 'Digital Store — NahroTech',
       description:
-        'Ready-made Excel templates, BI dashboards, business tools, and digital guides by NahrTech.',
+        'Ready-made Excel templates, BI dashboards, business tools, and digital guides by NahroTech.',
       heading: 'Ready-made digital products and templates',
       subheading:
         'Browse practical business assets and request direct purchasing via WhatsApp or inquiry form.',
     },
     insights: {
-      title: 'Insights & Articles — NahrTech',
+      title: 'Insights & Articles — NahroTech',
       description:
         'Practical articles on business intelligence, Excel automation, operational software, and digital transformation.',
       heading: 'Insights on technology and business systems',
@@ -132,24 +132,24 @@ export const en: TranslationDictionary = {
         'Guides, breakdowns, and architecture notes for founders and operations teams.',
     },
     about: {
-      title: 'About NahrTech — Think Smart. Build Better.',
+      title: 'About NahroTech — Think Smart. Build Better.',
       description:
-        'Learn how NahrTech bridges business strategy, data intelligence, and creative software engineering.',
+        'Learn how NahroTech bridges business strategy, data intelligence, and creative software engineering.',
       heading: 'Business-first technology, built to last',
       subheading:
         'Helping individuals, startups, SMEs, and enterprises build dependable digital foundations.',
     },
     contact: {
-      title: 'Contact & Project Inquiry — NahrTech',
+      title: 'Contact & Project Inquiry — NahroTech',
       description:
-        'Start a custom project, request a digital product, or book a consultation with NahrTech.',
+        'Start a custom project, request a digital product, or book a consultation with NahroTech.',
       heading: 'Start your project or book a consultation',
       subheading:
         'Share your requirements, reach out via WhatsApp, or schedule a discovery discussion.',
     },
     notFound: {
-      title: 'Page Not Found — NahrTech',
-      description: 'The requested page could not be found on NahrTech.',
+      title: 'Page Not Found — NahroTech',
+      description: 'The requested page could not be found on NahroTech.',
       heading: 'Page not found',
       body: 'The page you requested does not exist or may have moved. Use the navigation or return to the homepage.',
     },
@@ -161,11 +161,11 @@ export const en: TranslationDictionary = {
     items: {
       'privacy-policy': {
         title: 'Privacy Policy',
-        summary: 'How NahrTech collects, uses, and protects inquiry and analytics data.',
+        summary: 'How NahroTech collects, uses, and protects inquiry and analytics data.',
       },
       'terms-of-use': {
         title: 'Terms of Use',
-        summary: 'Rules and acceptable use governing access to the NahrTech website.',
+        summary: 'Rules and acceptable use governing access to the NahroTech website.',
       },
       'cookie-policy': {
         title: 'Cookie Policy',
@@ -194,8 +194,8 @@ export const en: TranslationDictionary = {
     emailNotConfigured: 'Email configurable in site settings',
     whatsappNotConfigured: 'WhatsApp configurable in site settings',
     whatsappLabel: 'Chat on WhatsApp',
-    emailLabel: 'Email NahrTech',
-    whatsappDefaultMessage: 'Hello NahrTech, I would like to discuss a project or consultation.',
-    copyright: 'NahrTech. Think Smart. Build Better.',
+    emailLabel: 'Email NahroTech',
+    whatsappDefaultMessage: 'Hello NahroTech, I would like to discuss a project or consultation.',
+    copyright: 'NahroTech. Think Smart. Build Better.',
   },
 };
