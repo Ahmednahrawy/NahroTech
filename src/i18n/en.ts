@@ -121,32 +121,18 @@ export const en: TranslationDictionary = {
           description: 'Start with an achievable MVP scope, validate real business usage, and expand with confidence.',
         },
       ],
-      showcaseTitle: 'Explore our work, digital tools & insights',
-      showcaseSubtitle:
-        'Browse structured case studies, ready-made business assets, and practical technical guides.',
-      showcaseItems: [
-        {
-          label: 'Portfolio',
-          title: 'Case Studies & Concept Demonstrations',
-          description: 'See how business requirements translate into structured technical implementations.',
-          cta: 'Browse Portfolio',
-          route: 'portfolio',
-        },
-        {
-          label: 'Digital Store',
-          title: 'Ready-Made Templates & Dashboards',
-          description: 'Practical Excel models, analytics packs, and operational tools available for direct inquiry.',
-          cta: 'Explore Products',
-          route: 'store',
-        },
-        {
-          label: 'Insights',
-          title: 'Guides & Technical Architecture Notes',
-          description: 'Clear articles on BI reporting, automation workflows, and digital transformation.',
-          cta: 'Read Insights',
-          route: 'insights',
-        },
-      ],
+      featuredPortfolioTitle: 'Featured portfolio & concept architectures',
+      featuredPortfolioSubtitle:
+        'Explore structured case studies showing how operational requirements translate into clean systems and dashboards.',
+      featuredProductsTitle: 'Ready-made digital products',
+      featuredProductsSubtitle:
+        'Structured Excel templates, Power BI packs, and business tools available for direct order inquiry.',
+      latestInsightsTitle: 'Latest insights & practical guides',
+      latestInsightsSubtitle:
+        'Architecture notes on spreadsheet structure, BI tools, and pragmatic workflow automation.',
+      viewAllPortfolio: 'View all portfolio work',
+      viewAllProducts: 'Browse Digital Store',
+      viewAllInsights: 'Read all insights',
       finalCtaTitle: 'Ready to simplify your operations or launch something new?',
       finalCtaBody:
         'Tell us what you are building or trying to streamline. Start a custom project, inquire about a digital product, or schedule a focused consultation.',
@@ -199,26 +185,64 @@ export const en: TranslationDictionary = {
     portfolio: {
       title: 'Portfolio & Case Studies — NahroTech',
       description:
-        'Selected work, concept demonstrations, and structured engineering case studies by NahroTech.',
-      heading: 'Selected projects and demonstrations',
+        'Selected concept demonstrations and structured engineering case studies by NahroTech, filterable by industry, service, and technology.',
+      heading: 'Portfolio & engineering case studies',
       subheading:
-        'Filterable by industry, service discipline, and technology stack (full catalog arriving in Phase 3).',
+        'Every entry documents the business problem, requirements, proposed solution, implementation, and demonstrated outcome.',
+      conceptNotice:
+        'Transparency note: Concept demonstrations and architectural blueprints built by NahroTech are clearly labeled as such. No client names, testimonials, or unverified metrics are fabricated.',
+      filterIndustry: 'Industry',
+      filterService: 'Service',
+      filterTechnology: 'Technology',
+      allOption: 'All',
+      noMatches: 'No portfolio items match the selected filters.',
+      viewCaseStudy: 'Read case study',
+      caseStudy: {
+        problemHeading: '1. Business Problem',
+        requirementsHeading: '2. Requirements',
+        solutionHeading: '3. Proposed Solution',
+        implementationHeading: '4. Implementation',
+        outcomeHeading: '5. Outcome & Scope Note',
+        relatedServiceLabel: 'Primary Service Discipline',
+        requestSimilarCta: 'Request a Similar Project',
+      },
     },
     store: {
       title: 'Digital Store — NahroTech',
       description:
-        'Ready-made Excel templates, BI dashboards, business tools, and digital guides by NahroTech.',
-      heading: 'Ready-made digital products and templates',
+        'Ready-made Excel templates, Power BI dashboards, business management trackers, software kits, and digital guides by NahroTech.',
+      heading: 'Ready-made digital products & business tools',
       subheading:
-        'Browse practical business assets and request direct purchasing via WhatsApp or inquiry form (full catalog arriving in Phase 3).',
+        'Browse practical templates, dashboards, and guides ready for immediate business use.',
+      mvpPurchaseNote:
+        'Direct MVP purchasing: Browse product specifications and indicative pricing below, then request your purchase directly via WhatsApp or our project inquiry form. Orders are confirmed manually with no automated checkout required.',
+      allCategories: 'All Categories',
+      viewProductDetails: 'View product specifications',
+      requestPurchaseForm: 'Request via Inquiry Form',
+      requestPurchaseWhatsApp: 'Request Purchase on WhatsApp',
+      product: {
+        priceLabel: 'Indicative Price',
+        featuresHeading: 'Key Features',
+        intendedUsersHeading: 'Intended Users',
+        compatibilityHeading: 'Compatibility',
+        requirementsHeading: 'Requirements',
+        licenseHeading: 'License Information',
+        faqHeading: 'Frequently Asked Questions',
+        purchaseNotice:
+          'Purchase requests are confirmed directly via WhatsApp or our inquiry form before delivery.',
+      },
     },
     insights: {
       title: 'Insights & Articles — NahroTech',
       description:
-        'Practical articles on business intelligence, Excel automation, operational software, and digital transformation.',
-      heading: 'Insights on technology and business systems',
+        'Practical articles on spreadsheet architecture, business intelligence, and pragmatic workflow automation by NahroTech.',
+      heading: 'Insights on technology & business systems',
       subheading:
-        'Guides, breakdowns, and architecture notes for founders and operations teams (articles arriving in Phase 3).',
+        'Clear guides and architecture notes for entrepreneurs, analysts, and operations teams.',
+      allCategories: 'All Topics',
+      readArticle: 'Read article',
+      relatedServiceLabel: 'Related Service',
+      backToInsights: 'Back to all insights',
     },
     about: {
       title: 'About NahroTech — Think Smart. Build Better.',

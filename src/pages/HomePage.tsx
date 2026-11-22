@@ -4,8 +4,12 @@ import {SeoHead, buildOrganizationJsonLd} from '../components/SeoHead';
 import {ServiceIcon} from '../components/ServiceIcon';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {MediaFrame} from '../components/ui/MediaFrame';
 import {ABOUT_CONTENT} from '../content/about';
-import {SERVICES} from '../content/services';
+import {getInsightsByLocale} from '../content/insights';
+import {PORTFOLIO_ITEMS} from '../content/portfolio';
+import {PRODUCT_CATEGORIES, PRODUCTS} from '../content/products';
+import {SERVICES, getServiceBySlug} from '../content/services';
 import {INDUSTRY_OPTIONS} from '../content/solutions';
 import {useLocale} from '../i18n/LocaleContext';
 import {ROUTE_SEGMENTS} from '../utils/routes';
@@ -14,6 +18,9 @@ export function HomePage() {
   const {locale, dir, t, to} = useLocale();
   const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
   const about = ABOUT_CONTENT[locale];
+  const featuredPortfolio = PORTFOLIO_ITEMS.filter((item) => item.featured).slice(0, 3);
+  const featuredProducts = PRODUCTS.filter((p) => p.readyForSale && p.featured).slice(0, 3);
+  const latestInsights = getInsightsByLocale(locale).slice(0, 3);
 
   return (
     <>
@@ -307,39 +314,201 @@ export function HomePage() {
         </Container>
       </section>
 
-      {/* 7. Showcase Teasers (Portfolio, Digital Store, Insights) */}
+      {/* 7. Featured Portfolio & Concept Architectures */}
       <section className="border-t border-[var(--nt-border)] bg-[var(--nt-surface)] py-16 sm:py-20">
         <Container>
-          <div className="max-w-2xl space-y-3 mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--nt-text)]">
-              {t.pages.home.showcaseTitle}
-            </h2>
-            <p className="text-base text-[var(--nt-text-secondary)]">
-              {t.pages.home.showcaseSubtitle}
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--nt-text)]">
+                {t.pages.home.featuredPortfolioTitle}
+              </h2>
+              <p className="text-base text-[var(--nt-text-secondary)]">
+                {t.pages.home.featuredPortfolioSubtitle}
+              </p>
+            </div>
+            <LinkButton to={to(ROUTE_SEGMENTS.portfolio)} variant="outline" size="md">
+              <span>{t.pages.home.viewAllPortfolio}</span>
+              <ArrowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </LinkButton>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {t.pages.home.showcaseItems.map((item) => (
-              <Link
-                key={item.route}
-                to={to(ROUTE_SEGMENTS[item.route])}
-                className="group flex flex-col justify-between rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)] p-6 transition-colors hover:border-[#176BCE] dark:hover:border-[#16C7D9]"
+            {featuredPortfolio.map((item) => {
+              const copy = item.content[locale];
+              const service = getServiceBySlug(item.serviceSlug);
+              return (
+                <article
+                  key={item.slug}
+                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)]"
+                >
+                  <div>
+                    <Link to={to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`)}>
+                      <MediaFrame src={item.image} alt={copy.imageAlt} />
+                    </Link>
+                    <div className="p-6 space-y-2.5">
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--nt-text-muted)]">
+                        <span className="font-semibold text-[#176BCE] dark:text-[#16C7D9]">
+                          {copy.statusLabel}
+                        </span>
+                        <span aria-hidden="true">·</span>
+                        <span>{service?.content[locale].shortTitle || copy.category}</span>
+                      </div>
+                      <h3 className="text-lg font-bold text-[var(--nt-text)]">
+                        <Link
+                          to={to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`)}
+                          className="hover:text-[#176BCE] dark:hover:text-[#16C7D9] transition-colors"
+                        >
+                          {copy.title}
+                        </Link>
+                      </h3>
+                      <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                        {copy.shortDescription}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="px-6 pb-6 pt-4 border-t border-[var(--nt-border)]">
+                    <Link
+                      to={to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
+                    >
+                      <span>{t.pages.portfolio.viewCaseStudy}</span>
+                      <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* 8. Featured Ready-Made Digital Products */}
+      <section className="border-t border-[var(--nt-border)] py-16 sm:py-20">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--nt-text)]">
+                {t.pages.home.featuredProductsTitle}
+              </h2>
+              <p className="text-base text-[var(--nt-text-secondary)]">
+                {t.pages.home.featuredProductsSubtitle}
+              </p>
+            </div>
+            <LinkButton to={to(ROUTE_SEGMENTS.store)} variant="outline" size="md">
+              <span>{t.pages.home.viewAllProducts}</span>
+              <ArrowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </LinkButton>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {featuredProducts.map((product) => {
+              const copy = product.content[locale];
+              const categoryLabel =
+                PRODUCT_CATEGORIES.find((c) => c.id === product.category)?.label[locale] || '';
+              return (
+                <article
+                  key={product.slug}
+                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)]"
+                >
+                  <div>
+                    <Link to={to(`${ROUTE_SEGMENTS.store}/${product.slug}`)}>
+                      <MediaFrame src={product.image} alt={copy.imageAlt} />
+                    </Link>
+                    <div className="p-6 space-y-2.5">
+                      <p className="text-xs font-medium text-[var(--nt-text-muted)]">
+                        {categoryLabel}
+                      </p>
+                      <h3 className="text-lg font-bold text-[var(--nt-text)]">
+                        <Link
+                          to={to(`${ROUTE_SEGMENTS.store}/${product.slug}`)}
+                          className="hover:text-[#176BCE] dark:hover:text-[#16C7D9] transition-colors"
+                        >
+                          {copy.name}
+                        </Link>
+                      </h3>
+                      <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                        {copy.shortDescription}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="px-6 pb-6 pt-4 border-t border-[var(--nt-border)] space-y-3">
+                    <p className="text-xs font-semibold text-[var(--nt-text)] tabular-nums">
+                      {copy.priceDisplay}
+                    </p>
+                    <Link
+                      to={to(`${ROUTE_SEGMENTS.store}/${product.slug}`)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
+                    >
+                      <span>{t.pages.store.viewProductDetails}</span>
+                      <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* 9. Latest Insights & Practical Guides */}
+      <section className="border-t border-[var(--nt-border)] bg-[var(--nt-surface)] py-16 sm:py-20">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--nt-text)]">
+                {t.pages.home.latestInsightsTitle}
+              </h2>
+              <p className="text-base text-[var(--nt-text-secondary)]">
+                {t.pages.home.latestInsightsSubtitle}
+              </p>
+            </div>
+            <LinkButton to={to(ROUTE_SEGMENTS.insights)} variant="outline" size="md">
+              <span>{t.pages.home.viewAllInsights}</span>
+              <ArrowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </LinkButton>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {latestInsights.map((article) => (
+              <article
+                key={article.slug}
+                className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)]"
               >
-                <div className="space-y-2.5">
-                  <p className="text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
-                    {item.label}
-                  </p>
-                  <h3 className="text-lg font-bold text-[var(--nt-text)]">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
-                    {item.description}
-                  </p>
+                <div>
+                  <Link to={to(`${ROUTE_SEGMENTS.insights}/${article.slug}`)}>
+                    <MediaFrame src={article.image} alt={article.imageAlt} />
+                  </Link>
+                  <div className="p-6 space-y-2.5">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--nt-text-muted)] tabular-nums">
+                      <span>{article.category}</span>
+                      <span aria-hidden="true">·</span>
+                      <time dateTime={article.publishedAt}>{article.publishedAt}</time>
+                      <span aria-hidden="true">·</span>
+                      <span>{article.readTime}</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-[var(--nt-text)]">
+                      <Link
+                        to={to(`${ROUTE_SEGMENTS.insights}/${article.slug}`)}
+                        className="hover:text-[#176BCE] dark:hover:text-[#16C7D9] transition-colors"
+                      >
+                        {article.title}
+                      </Link>
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                      {article.summary}
+                    </p>
+                  </div>
                 </div>
-                <div className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
-                  <span>{item.cta}</span>
-                  <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <div className="px-6 pb-6 pt-4 border-t border-[var(--nt-border)]">
+                  <Link
+                    to={to(`${ROUTE_SEGMENTS.insights}/${article.slug}`)}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
+                  >
+                    <span>{t.pages.insights.readArticle}</span>
+                    <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  </Link>
                 </div>
-              </Link>
+              </article>
             ))}
           </div>
         </Container>

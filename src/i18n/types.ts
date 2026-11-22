@@ -82,15 +82,15 @@ export interface TranslationDictionary {
         title: string;
         description: string;
       }>;
-      showcaseTitle: string;
-      showcaseSubtitle: string;
-      showcaseItems: Array<{
-        label: string;
-        title: string;
-        description: string;
-        cta: string;
-        route: 'portfolio' | 'store' | 'insights';
-      }>;
+      featuredPortfolioTitle: string;
+      featuredPortfolioSubtitle: string;
+      featuredProductsTitle: string;
+      featuredProductsSubtitle: string;
+      latestInsightsTitle: string;
+      latestInsightsSubtitle: string;
+      viewAllPortfolio: string;
+      viewAllProducts: string;
+      viewAllInsights: string;
       finalCtaTitle: string;
       finalCtaBody: string;
     };
@@ -139,18 +139,53 @@ export interface TranslationDictionary {
       description: string;
       heading: string;
       subheading: string;
+      conceptNotice: string;
+      filterIndustry: string;
+      filterService: string;
+      filterTechnology: string;
+      allOption: string;
+      noMatches: string;
+      viewCaseStudy: string;
+      caseStudy: {
+        problemHeading: string;
+        requirementsHeading: string;
+        solutionHeading: string;
+        implementationHeading: string;
+        outcomeHeading: string;
+        relatedServiceLabel: string;
+        requestSimilarCta: string;
+      };
     };
     store: {
       title: string;
       description: string;
       heading: string;
       subheading: string;
+      mvpPurchaseNote: string;
+      allCategories: string;
+      viewProductDetails: string;
+      requestPurchaseForm: string;
+      requestPurchaseWhatsApp: string;
+      product: {
+        priceLabel: string;
+        featuresHeading: string;
+        intendedUsersHeading: string;
+        compatibilityHeading: string;
+        requirementsHeading: string;
+        licenseHeading: string;
+        faqHeading: string;
+        purchaseNotice: string;
+      };
     };
     insights: {
       title: string;
       description: string;
       heading: string;
       subheading: string;
+      allCategories: string;
+      readArticle: string;
+      relatedServiceLabel: string;
+      backToInsights: string;
     };
     about: {
       title: string;

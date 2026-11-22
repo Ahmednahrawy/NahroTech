@@ -2,17 +2,25 @@ import {useEffect} from 'react';
 import {Link, Outlet, Route, Routes, useNavigate} from 'react-router-dom';
 import {Layout} from './components/Layout';
 import {Locale, siteConfig} from './config/site';
+import {INSIGHT_SLUGS} from './content/insights';
+import {PORTFOLIO_ITEMS} from './content/portfolio';
+import {PRODUCTS} from './content/products';
 import {SERVICES} from './content/services';
 import {LocaleProvider} from './i18n/LocaleContext';
 import {AboutPage} from './pages/AboutPage';
+import {ArticleDetailPage} from './pages/ArticleDetailPage';
+import {CaseStudyDetailPage} from './pages/CaseStudyDetailPage';
 import {ContactPage} from './pages/ContactPage';
 import {HomePage} from './pages/HomePage';
+import {InsightsPage} from './pages/InsightsPage';
 import {LegalPage} from './pages/LegalPage';
 import {NotFoundPage} from './pages/NotFoundPage';
-import {SectionScaffoldPage} from './pages/SectionScaffoldPage';
+import {PortfolioPage} from './pages/PortfolioPage';
+import {ProductDetailPage} from './pages/ProductDetailPage';
 import {ServiceDetailPage} from './pages/ServiceDetailPage';
 import {ServicesPage} from './pages/ServicesPage';
 import {SolutionsPage} from './pages/SolutionsPage';
+import {StorePage} from './pages/StorePage';
 import {LEGAL_SLUGS, ROUTE_SEGMENTS, localePath} from './utils/routes';
 
 export const STATIC_SUBPATHS: string[] = [
@@ -21,8 +29,11 @@ export const STATIC_SUBPATHS: string[] = [
   ...SERVICES.map((s) => `${ROUTE_SEGMENTS.services}/${s.slug}`),
   ROUTE_SEGMENTS.solutions,
   ROUTE_SEGMENTS.portfolio,
+  ...PORTFOLIO_ITEMS.map((item) => `${ROUTE_SEGMENTS.portfolio}/${item.slug}`),
   ROUTE_SEGMENTS.store,
+  ...PRODUCTS.filter((p) => p.readyForSale).map((p) => `${ROUTE_SEGMENTS.store}/${p.slug}`),
   ROUTE_SEGMENTS.insights,
+  ...INSIGHT_SLUGS.map((slug) => `${ROUTE_SEGMENTS.insights}/${slug}`),
   ROUTE_SEGMENTS.about,
   ROUTE_SEGMENTS.contact,
   ...LEGAL_SLUGS.map((slug) => `${ROUTE_SEGMENTS.legal}/${slug}`),
@@ -81,9 +92,12 @@ function localeChildRoutes() {
       <Route path={ROUTE_SEGMENTS.services} element={<ServicesPage />} />
       <Route path={`${ROUTE_SEGMENTS.services}/:slug`} element={<ServiceDetailPage />} />
       <Route path={ROUTE_SEGMENTS.solutions} element={<SolutionsPage />} />
-      <Route path={ROUTE_SEGMENTS.portfolio} element={<SectionScaffoldPage section="portfolio" />} />
-      <Route path={ROUTE_SEGMENTS.store} element={<SectionScaffoldPage section="store" />} />
-      <Route path={ROUTE_SEGMENTS.insights} element={<SectionScaffoldPage section="insights" />} />
+      <Route path={ROUTE_SEGMENTS.portfolio} element={<PortfolioPage />} />
+      <Route path={`${ROUTE_SEGMENTS.portfolio}/:slug`} element={<CaseStudyDetailPage />} />
+      <Route path={ROUTE_SEGMENTS.store} element={<StorePage />} />
+      <Route path={`${ROUTE_SEGMENTS.store}/:slug`} element={<ProductDetailPage />} />
+      <Route path={ROUTE_SEGMENTS.insights} element={<InsightsPage />} />
+      <Route path={`${ROUTE_SEGMENTS.insights}/:slug`} element={<ArticleDetailPage />} />
       <Route path={ROUTE_SEGMENTS.about} element={<AboutPage />} />
       <Route path={ROUTE_SEGMENTS.contact} element={<ContactPage />} />
       <Route path={`${ROUTE_SEGMENTS.legal}/:slug`} element={<LegalPage />} />

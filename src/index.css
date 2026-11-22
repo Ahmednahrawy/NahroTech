@@ -90,6 +90,52 @@
   font-variant-numeric: tabular-nums;
 }
 
+.nt-prose {
+  color: var(--nt-text-secondary);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.nt-prose h2 {
+  color: var(--nt-text);
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.nt-prose p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.nt-prose ul,
+.nt-prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-inline-start: 1.5rem;
+  list-style-type: disc;
+}
+
+.nt-prose li {
+  margin-top: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.nt-prose strong {
+  color: var(--nt-text);
+  font-weight: 600;
+}
+
+.nt-prose code {
+  font-size: 0.875em;
+  background-color: var(--nt-surface-elevated);
+  border: 1px solid var(--nt-border);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

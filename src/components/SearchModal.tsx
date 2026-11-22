@@ -1,6 +1,9 @@
 import {ArrowLeft, ArrowRight, Search, X} from 'lucide-react';
 import {useEffect, useMemo, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {getInsightsByLocale} from '../content/insights';
+import {PORTFOLIO_ITEMS} from '../content/portfolio';
+import {PRODUCTS} from '../content/products';
 import {SERVICES} from '../content/services';
 import {INDUSTRY_OPTIONS} from '../content/solutions';
 import {useLocale} from '../i18n/LocaleContext';
@@ -110,6 +113,27 @@ export function SearchModal({
       section: t.nav.solutions,
     }));
 
+    const portfolioEntries: SearchEntry[] = PORTFOLIO_ITEMS.map((item) => ({
+      title: item.content[locale].title,
+      description: item.content[locale].shortDescription,
+      path: to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`),
+      section: t.nav.portfolio,
+    }));
+
+    const productEntries: SearchEntry[] = PRODUCTS.filter((p) => p.readyForSale).map((product) => ({
+      title: product.content[locale].name,
+      description: product.content[locale].shortDescription,
+      path: to(`${ROUTE_SEGMENTS.store}/${product.slug}`),
+      section: t.nav.store,
+    }));
+
+    const insightEntries: SearchEntry[] = getInsightsByLocale(locale).map((article) => ({
+      title: article.title,
+      description: article.summary,
+      path: to(`${ROUTE_SEGMENTS.insights}/${article.slug}`),
+      section: t.nav.insights,
+    }));
+
     const legalPages: SearchEntry[] = LEGAL_SLUGS.map((slug) => ({
       title: t.legal.items[slug].title,
       description: t.legal.items[slug].summary,
@@ -117,7 +141,15 @@ export function SearchModal({
       section: t.legal.sectionTitle,
     }));
 
-    return [...pages, ...serviceEntries, ...industryEntries, ...legalPages];
+    return [
+      ...pages,
+      ...serviceEntries,
+      ...industryEntries,
+      ...portfolioEntries,
+      ...productEntries,
+      ...insightEntries,
+      ...legalPages,
+    ];
   }, [locale, t, to]);
 
   const results = useMemo(() => {
