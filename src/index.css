@@ -90,6 +90,29 @@
   font-variant-numeric: tabular-nums;
 }
 
+@keyframes nt-enter {
+  from {
+    opacity: var(--nt-enter-opacity, 1);
+    transform: translate3d(0, var(--nt-enter-translate-y, 0), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility animate-in {
+  animation: nt-enter 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility fade-in {
+  --nt-enter-opacity: 0;
+}
+
+@utility slide-in-from-bottom-5 {
+  --nt-enter-translate-y: 1.25rem;
+}
+
 .nt-prose {
   color: var(--nt-text-secondary);
   line-height: 1.75;
