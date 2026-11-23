@@ -277,10 +277,13 @@ export function ContactPage() {
                         onChange={(e) => setName(e.target.value)}
                         placeholder={t.pages.contact.form.namePlaceholder}
                         aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
                         className={inputBaseClass}
                       />
                       {errors.name && (
-                        <p className="text-xs font-medium text-[var(--nt-error)]">{errors.name}</p>
+                        <p id="contact-name-error" className="text-xs font-medium text-[var(--nt-error)]">
+                          {errors.name}
+                        </p>
                       )}
                     </div>
 
@@ -299,10 +302,13 @@ export function ContactPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={t.pages.contact.form.emailPlaceholder}
                         aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? 'contact-email-error' : undefined}
                         className={inputBaseClass}
                       />
                       {errors.email && (
-                        <p className="text-xs font-medium text-[var(--nt-error)]">{errors.email}</p>
+                        <p id="contact-email-error" className="text-xs font-medium text-[var(--nt-error)]">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -367,6 +373,7 @@ export function ContactPage() {
                       value={service}
                       onChange={(e) => setService(e.target.value)}
                       aria-invalid={Boolean(errors.service)}
+                      aria-describedby={errors.service ? 'contact-service-error' : undefined}
                       className={inputBaseClass}
                     >
                       <option value="">{t.pages.contact.form.servicePlaceholder}</option>
@@ -377,7 +384,9 @@ export function ContactPage() {
                       ))}
                     </select>
                     {errors.service && (
-                      <p className="text-xs font-medium text-[var(--nt-error)]">{errors.service}</p>
+                      <p id="contact-service-error" className="text-xs font-medium text-[var(--nt-error)]">
+                        {errors.service}
+                      </p>
                     )}
                   </div>
 
@@ -396,10 +405,14 @@ export function ContactPage() {
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder={t.pages.contact.form.descriptionPlaceholder}
                       aria-invalid={Boolean(errors.description)}
+                      aria-describedby={errors.description ? 'contact-description-error' : undefined}
                       className={inputBaseClass}
                     />
                     {errors.description && (
-                      <p className="text-xs font-medium text-[var(--nt-error)]">
+                      <p
+                        id="contact-description-error"
+                        className="text-xs font-medium text-[var(--nt-error)]"
+                      >
                         {errors.description}
                       </p>
                     )}

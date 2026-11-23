@@ -11,6 +11,7 @@ function normalizeBasePath(raw?: string): string {
 
 export default defineConfig(({isSsrBuild}) => {
   const base = normalizeBasePath(process.env.VITE_BASE_PATH);
+  const rootDir = import.meta.dirname;
 
   return {
     base,
@@ -26,8 +27,8 @@ export default defineConfig(({isSsrBuild}) => {
           if (error || isSsrBuild) {
             return;
           }
-          const distDir = path.resolve(__dirname, 'dist');
-          const srcAssets = path.resolve(__dirname, 'src/assets');
+          const distDir = path.resolve(rootDir, 'dist');
+          const srcAssets = path.resolve(rootDir, 'src/assets');
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
@@ -35,9 +36,36 @@ export default defineConfig(({isSsrBuild}) => {
         },
       },
     ],
+    build: isSsrBuild
+      ? undefined
+      : {
+          rolldownOptions: {
+            output: {
+              codeSplitting: {
+                groups: [
+                  {
+                    name: 'vendor-react',
+                    test: /node_modules[\\/](react|react-dom|react-router-dom|scheduler)/,
+                    priority: 20,
+                  },
+                  {
+                    name: 'vendor-icons',
+                    test: /node_modules[\\/]lucide-react/,
+                    priority: 15,
+                  },
+                  {
+                    name: 'vendor-markdown',
+                    test: /node_modules[\\/]marked/,
+                    priority: 15,
+                  },
+                ],
+              },
+            },
+          },
+        },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(rootDir, '.'),
       },
     },
     server: {

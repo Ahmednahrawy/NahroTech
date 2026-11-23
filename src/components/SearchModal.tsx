@@ -26,14 +26,19 @@ export function SearchModal({
   const {locale, t, to, dir} = useLocale();
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
 
   useEffect(() => {
     if (!open) {
       setQuery('');
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
       return;
     }
+    previousFocusRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const timer = setTimeout(() => inputRef.current?.focus(), 20);
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
