@@ -55,7 +55,7 @@ export function FloatingWhatsApp() {
       title={t.consent.floatingWhatsappLabel}
       onClick={() => trackWhatsAppClick('floating_button', subPath || 'home', locale)}
       className={cn(
-        'fixed end-5 z-30 inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-[#101B35] px-4 py-3 text-sm font-semibold text-white shadow-lg border border-white/15 hover:bg-[#176BCE] dark:bg-[#16C7D9] dark:text-[#091122] dark:hover:bg-[#3BD6E6] transition-all',
+        'fixed end-5 z-30 inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-[#101B35] px-4 py-3 text-sm font-semibold text-white shadow-lg border border-white/15 hover:bg-[#176BCE] active:scale-95 dark:bg-[#16C7D9] dark:text-[#091122] dark:hover:bg-[#3BD6E6] transition-all',
         bannerVisible ? 'bottom-36 sm:bottom-24' : 'bottom-5',
       )}
     >
