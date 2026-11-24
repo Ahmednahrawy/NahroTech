@@ -6,6 +6,8 @@ export interface LocalizedService {
   title: string;
   shortTitle: string;
   summary: string;
+  imageAlt: string;
+  workExampleCaption: string;
   problemSolved: string;
   approach: string;
   capabilities: string[];
@@ -19,6 +21,7 @@ export interface ServiceItem {
   order: string;
   tier: ServiceTier;
   iconName: 'bar-chart' | 'table' | 'workflow' | 'globe' | 'smartphone' | 'cpu';
+  image: string;
   connectedSlugs: string[];
   content: Record<Locale, LocalizedService>;
 }
@@ -29,6 +32,7 @@ export const SERVICES: ServiceItem[] = [
     order: '01',
     tier: 'primary',
     iconName: 'bar-chart',
+    image: 'src/assets/images/bi_analytics_workspace_1795357660215.jpg',
     connectedSlugs: ['excel-solutions-automation', 'business-management-solutions', 'ai-digital-automation'],
     content: {
       en: {
@@ -36,6 +40,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'Data & BI',
         summary:
           'Turn fragmented spreadsheets and operational logs into clear Power BI dashboards, KPI monitors, and executive reports.',
+        imageAlt:
+          'Executive workstation showing structured Power BI sales margin and operational KPI charts',
+        workExampleCaption: 'Concept Example · Power BI Margin & Multi-Branch KPI Dashboard',
         problemSolved:
           'Teams spend hours reconciling conflicting numbers every week and still lack real-time visibility into margins, stock turnover, and performance trends.',
         approach:
@@ -66,6 +73,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'البيانات وذكاء الأعمال',
         summary:
           'تحويل الجداول المتفرقة وسجلات التشغيل إلى لوحات Power BI واضحة، ومؤشرات أداء، وتقارير تنفيذية موثوقة.',
+        imageAlt:
+          'محطة عمل تعرض لوحة Power BI منظمة لهوامش المبيعات ومؤشرات الأداء التشغيلية',
+        workExampleCaption: 'نموذج تطبيقي · لوحة Power BI للهوامش ومؤشرات الفروع',
         problemSolved:
           'تقضي الفرق ساعات أسبوعياً في مطابقة أرقام متعارضة دون رؤية واضحة لهوامش الربح أو دوران المخزون أو اتجاهات الأداء.',
         approach:
@@ -98,6 +108,7 @@ export const SERVICES: ServiceItem[] = [
     order: '02',
     tier: 'primary',
     iconName: 'table',
+    image: 'src/assets/images/excel_financial_model_1795357660368.jpg',
     connectedSlugs: ['data-business-intelligence', 'business-management-solutions'],
     content: {
       en: {
@@ -105,6 +116,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'Excel & Automation',
         summary:
           'Structured Excel systems, automated reporting templates, inventory trackers, and financial models built for accuracy and speed.',
+        imageAlt:
+          'Financial spreadsheet architecture displayed on a studio laptop with structured cash-flow forecasting tables',
+        workExampleCaption: 'Concept Example · Automated Cash-Flow & Credit Aging Workbook',
         problemSolved:
           'Fragile, manually edited spreadsheets lead to formula errors, broken links, and hours of repetitive copy-pasting.',
         approach:
@@ -135,6 +149,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'حلول إكسل',
         summary:
           'بناء أنظمة إكسل احترافية، وتقارير مؤتمتة، وجداول إدارة مخزون، وأدوات مالية دقيقة وسهلة الاستخدام.',
+        imageAlt:
+          'بنية مصنف إكسل مالي منظم معروض على حاسوب محمول لمتابعة التدفقات النقدية',
+        workExampleCaption: 'نموذج تطبيقي · مصنف التدفقات النقدية وأعمار الذمم المؤتمت',
         problemSolved:
           'تؤدي الجداول اليدوية غير المنظمة إلى أخطاء في المعادلات وتكرار النسخ واللصق وهدر ساعات العمل الأسبوعية.',
         approach:
@@ -167,6 +184,7 @@ export const SERVICES: ServiceItem[] = [
     order: '03',
     tier: 'primary',
     iconName: 'workflow',
+    image: 'src/assets/images/crm_management_work_example_1795525932669.jpg',
     connectedSlugs: ['data-business-intelligence', 'web-design-development', 'ai-digital-automation'],
     content: {
       en: {
@@ -174,6 +192,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'Business Systems',
         summary:
           'Practical sales, inventory, CRM, and operational workflow systems tailored to how your business actually operates.',
+        imageAlt:
+          'Dual-screen operations desk showing client pipeline stages, contract milestones, and invoice schedule tracking',
+        workExampleCaption: 'Concept Example · Client Pipeline, Contract & Billing Tracker',
         problemSolved:
           'Growing businesses outgrow scattered chats and paper logs, causing missed customer follow-ups, stock discrepancies, and unclear accountability.',
         approach:
@@ -204,6 +225,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'إدارة الأعمال',
         summary:
           'أنظمة عملية لإدارة المبيعات والمخزون وعلاقات العملاء وتحسين تدفق العمليات اليومية وفق طبيعة عملك.',
+        imageAlt:
+          'شاشات مكتب تنفيذي تعرض مراحل متابعة العملاء وجدولة العقود والفواتير',
+        workExampleCaption: 'نموذج تطبيقي · نظام متابعة العملاء ومراحل العقود والفوترة',
         problemSolved:
           'مع نمو الشركة تصبح المتابعة عبر المحادثات والملفات المبعثرة سبباً لفقدان العملاء وأخطاء المخزون وضعف وضوح المسؤوليات.',
         approach:
@@ -236,6 +260,7 @@ export const SERVICES: ServiceItem[] = [
     order: '04',
     tier: 'additional',
     iconName: 'globe',
+    image: 'src/assets/images/web_portal_work_example_1795525930779.jpg',
     connectedSlugs: ['business-management-solutions', 'mobile-app-development', 'ai-digital-automation'],
     content: {
       en: {
@@ -243,6 +268,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'Web Development',
         summary:
           'Fast, responsive, SEO-ready corporate websites, landing pages, e-commerce storefronts, and custom web applications.',
+        imageAlt:
+          'Desktop display and tablet running a responsive corporate catalog and client inquiry web portal',
+        workExampleCaption: 'Concept Example · B2B Product Catalog & Client Request Web Portal',
         problemSolved:
           'Slow, outdated, or poorly structured websites lose visitor trust and fail to convert search traffic into real business inquiries.',
         approach:
@@ -272,6 +300,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'تطوير الويب',
         summary:
           'مواقع شركات، وصفحات هبوط، ومتاجر إلكترونية، وتطبيقات ويب سريعة ومتجاوبة ومهيأة لمحركات البحث.',
+        imageAlt:
+          'شاشة مكتبية وجهاز لوحي يعرضان بوابة ويب متجاوبة لكتالوج الأعمال وطلبات العملاء',
+        workExampleCaption: 'نموذج تطبيقي · بوابة ويب لكتالوج المنتجات وطلبات العملاء',
         problemSolved:
           'المواقع البطيئة أو غير المنظمة تضعف ثقة العملاء وتفشل في تحويل الزوار إلى طلبات واستفسارات حقيقية.',
         approach:
@@ -303,6 +334,7 @@ export const SERVICES: ServiceItem[] = [
     order: '05',
     tier: 'additional',
     iconName: 'smartphone',
+    image: 'src/assets/images/mobile_field_app_example_1795525932539.jpg',
     connectedSlugs: ['web-design-development', 'business-management-solutions'],
     content: {
       en: {
@@ -310,6 +342,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'Mobile Apps',
         summary:
           'Android, iOS, and cross-platform mobile applications tailored for customer engagement and field or business operations.',
+        imageAlt:
+          'Warehouse operator holding a smartphone running a field dispatch and stock barcode verification mobile app',
+        workExampleCaption: 'Concept Example · Field Dispatch & Stock Verification Mobile App',
         problemSolved:
           'Field teams, delivery workflows, and mobile-first customers struggle when critical tasks are locked inside desktop-only tools.',
         approach:
@@ -339,6 +374,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'تطبيقات الجوال',
         summary:
           'تطبيقات أندرويد وiOS ومتعددة المنصات مصممة لخدمة العملاء أو دعم فرق العمل الميدانية والتشغيلية.',
+        imageAlt:
+          'مشرف تشغيل يحمل هاتفاً ذكياً يشغّل تطبيقاً ميدانياً للتحقق من المخزون وجدولة التسليم',
+        workExampleCaption: 'نموذج تطبيقي · تطبيق جوال للتحقق من المخزون وإدارة التوصيل',
         problemSolved:
           'تواجه الفرق الميدانية والعملاء صعوبة عندما تبقى المهام اليومية محصورة في أنظمة سطح المكتب فقط.',
         approach:
@@ -370,6 +408,7 @@ export const SERVICES: ServiceItem[] = [
     order: '06',
     tier: 'additional',
     iconName: 'cpu',
+    image: 'src/assets/images/ai_automation_workflow_example_1795525934849.jpg',
     connectedSlugs: ['data-business-intelligence', 'business-management-solutions', 'web-design-development'],
     content: {
       en: {
@@ -377,6 +416,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'AI & Automation',
         summary:
           'Practical workflow automation, API integrations, intelligent reporting, and AI-assisted business tools that reduce manual work.',
+        imageAlt:
+          'Widescreen display presenting an automated document routing diagram and real-time API webhook log',
+        workExampleCaption: 'Concept Example · Automated Document Routing & API Webhook Flow',
         problemSolved:
           'Teams waste valuable time manually transferring data between disconnected apps, summarizing repetitive records, and triaging routine requests.',
         approach:
@@ -406,6 +448,9 @@ export const SERVICES: ServiceItem[] = [
         shortTitle: 'الذكاء والأتمتة',
         summary:
           'أتمتة سير العمل، وربط الأنظمة عبر API، والتقارير الذكية، وأدوات الأعمال المدعومة بالذكاء الاصطناعي لتقليل العمل اليدوي.',
+        imageAlt:
+          'شاشة عرض عريضة تعرض مخطط أتمتة توجيه المستندات وسجل أحداث API',
+        workExampleCaption: 'نموذج تطبيقي · مخطط أتمتة توجيه المستندات وتكامل API',
         problemSolved:
           'تهدر الفرق وقتاً كبيراً في نقل البيانات يدوياً بين أدوات منفصلة وتلخيص السجلات المتكررة ومعالجة الطلبات الروتينية.',
         approach:

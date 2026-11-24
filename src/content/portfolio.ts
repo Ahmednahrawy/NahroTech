@@ -166,7 +166,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     industry: 'services',
     serviceSlug: 'ai-digital-automation',
     technologies: ['React / TypeScript', 'API Automation', 'Business Systems'],
-    image: 'src/assets/images/retail_inventory_ops_1795357660077.jpg',
+    image: 'src/assets/images/ai_automation_workflow_example_1795525934849.jpg',
     isConceptDemo: true,
     featured: true,
     content: {
@@ -176,7 +176,8 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
         statusLabel: 'Concept Demonstration',
         shortDescription:
           'An end-to-end web intake and API automation workflow that routes service inquiries directly into structured CRM stages and operational alerts.',
-        imageAlt: 'Organized operational workspace with staff checking structured inventory and workflow records on a tablet',
+        imageAlt:
+          'Widescreen display presenting an automated financial and inquiry document routing diagram with API webhook logs',
         businessProblem:
           'Service firms receive inquiries across web forms, email, and messaging apps, causing fragmented follow-ups, duplicate manual data entry, and slow response times.',
         requirements: [
@@ -204,7 +205,8 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
         statusLabel: 'نموذج تطبيقي تجريبي',
         shortDescription:
           'مسار عمل متكامل يربط نماذج الويب بأتمتة API لتوجيه طلبات العملاء مباشرة إلى مراحل متابعة منظمة وتنبيهات تشغيلية.',
-        imageAlt: 'مساحة عمل تشغيلية منظمة مع متابعة السجلات عبر جهاز لوحي',
+        imageAlt:
+          'شاشة عرض عريضة تعرض مخطط توجيه المستندات والطلبات المؤتمت وسجل أحداث API',
         businessProblem:
           'تتلقى الشركات الخدمية الطلبات عبر نماذج الموقع والبريد والمحادثات، مما يؤدي إلى تشتت المتابعة وتكرار الإدخال اليدوي وبطء الاستجابة.',
         requirements: [
@@ -225,6 +227,213 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
           'يوضح النموذج كيف يمكن للشركات الخدمية بناء مسار استقطاب عملاء منظم وسريع دون تعقيد أنظمة CRM ضخمة.',
         outcomeCaveat:
           'نموذج تطبيقي تجريبي: مخطط عمل تقني من تطوير نحروتك لتوضيح تكامل الويب مع الأتمتة.',
+      },
+    },
+  },
+  {
+    slug: 'b2b-catalog-inquiry-web-portal',
+    industry: 'retail',
+    serviceSlug: 'web-design-development',
+    technologies: ['React / TypeScript', 'Responsive UI', 'Technical SEO'],
+    image: 'src/assets/images/web_portal_work_example_1795525930779.jpg',
+    isConceptDemo: true,
+    featured: true,
+    content: {
+      en: {
+        title: 'B2B Product Catalog & Client Request Web Portal',
+        category: 'Web Design & Development',
+        statusLabel: 'Concept Demonstration',
+        shortDescription:
+          'A bilingual corporate storefront and client intake portal engineered for fast product browsing, quote requests, and search visibility.',
+        imageAlt:
+          'Studio monitor and tablet displaying a clean deep-navy corporate B2B product catalog and client request portal',
+        businessProblem:
+          'Distributors and specialized product businesses often rely on static PDF catalogs sent over chat, making specification comparisons and quote requests slow on mobile and desktop.',
+        requirements: [
+          'Present structured product categories with clear specification tables.',
+          'Enable rapid quote or inquiry submission directly from each product view.',
+          'Support full English (LTR) and Arabic (RTL) browsing with fast static performance.',
+          'Maintain clean semantic markup and technical SEO metadata across every catalog URL.',
+        ],
+        proposedSolution:
+          'Engineered a lightweight TypeScript catalog portal paired with contextual quote-intake routing and pre-rendered product specification pages.',
+        implementation: [
+          'Designed an editorial navigation grid separating product families and consulting lines.',
+          'Built responsive catalog cards and specification detail templates across desktop and tablet.',
+          'Integrated contextual inquiry links pre-selecting the requested SKU or service line.',
+          'Configured pre-rendered static HTML outputs and structured OpenGraph metadata per route.',
+        ],
+        outcome:
+          'Illustrates how B2B and specialized retail teams can replace heavy PDF brochures with an interactive, search-ready catalog portal.',
+        outcomeCaveat:
+          'Concept Demonstration: Web interface and architecture prepared by NahroTech to demonstrate corporate web capabilities.',
+      },
+      ar: {
+        title: 'بوابة ويب لكتالوج المنتجات وطلبات عروض الأسعار للشركات',
+        category: 'تصميم وتطوير المواقع',
+        statusLabel: 'نموذج تطبيقي تجريبي',
+        shortDescription:
+          'منصة ويب ثنائية اللغة لعرض كتالوجات المنتجات والمواصفات مع مسار مباشر لطلبات التسعير والتهيئة لمحركات البحث.',
+        imageAlt:
+          'شاشة مكتبية وجهاز لوحي يعرضان بوابة ويب احترافية لكتالوج الأعمال وطلبات العملاء',
+        businessProblem:
+          'تعتمد كثير من شركات التوزيع والمنتجات المتخصصة على ملفات PDF كبيرة تُرسل عبر الدردشة، مما يصعّب استعراض المواصفات وطلب عروض الأسعار.',
+        requirements: [
+          'عرض فئات المنتجات وجداول المواصفات بوضوح وسرعة.',
+          'توفير زر طلب تسعير أو استفسار مباشر من صفحة كل منتج.',
+          'دعم كامل للغتين العربية (RTL) والإنجليزية (LTR) بسرعة تحميل عالية.',
+          'تضمين بنية دلالية نظيفة وبيانات SEO تقنية لكل صفحة كتالوج.',
+        ],
+        proposedSolution:
+          'تطوير بوابة ويب سريعة بـ TypeScript مع توجيه سياقي لطلبات التسعير وصفحات مواصفات مُولّدة مسبقاً لمحركات البحث.',
+        implementation: [
+          'تصميم شبكة عرض واضحة تفصل بين خطوط المنتجات والخدمات الاستشارية.',
+          'بناء واجهات متجاوبة للكتالوج وتفاصيل المواصفات على سطح المكتب والأجهزة اللوحية.',
+          'ربط روابط الاستفسار بحيث تنقل اسم المنتج المطلوب تلقائياً.',
+          'إعداد مخرجات HTML ثابتة وبيانات OpenGraph مخصصة لكل مسار.',
+        ],
+        outcome:
+          'يوضح النموذج كيف يمكن للشركات استبدال الكتيبات الجامدة ببوابة ويب تفاعلية سهلة التصفح والتحويل.',
+        outcomeCaveat:
+          'نموذج تطبيقي تجريبي: واجهة ومعمارية ويب من تصميم نحروتك لعرض قدرات تطوير الويب.',
+      },
+    },
+  },
+  {
+    slug: 'field-dispatch-inventory-mobile-app',
+    industry: 'wholesale',
+    serviceSlug: 'mobile-app-development',
+    technologies: ['Cross-Platform Mobile', 'API Automation', 'Business Systems'],
+    image: 'src/assets/images/mobile_field_app_example_1795525932539.jpg',
+    isConceptDemo: true,
+    featured: true,
+    content: {
+      en: {
+        title: 'Warehouse Verification & Field Dispatch Mobile App',
+        category: 'Mobile App Development',
+        statusLabel: 'Concept Demonstration',
+        shortDescription:
+          'A focused mobile operations companion enabling warehouse and delivery staff to verify pallets, track dispatch tasks, and sync status in real time.',
+        imageAlt:
+          'Operations staff holding a smartphone showing a dispatch checklist and barcode stock verification mobile interface',
+        businessProblem:
+          'Warehouse pickers and delivery drivers often rely on printed dispatch sheets and phone calls, causing mispicked pallets and delayed back-office visibility.',
+        requirements: [
+          'Provide clear daily dispatch task checklists readable on compact smartphone screens.',
+          'Support barcode verification feedback per pallet and zone before truck departure.',
+          'Sync completed verifications cleanly with central inventory and CRM records.',
+          'Keep interactions single-handed and resilient for busy floor environments.',
+        ],
+        proposedSolution:
+          'Architected a streamlined cross-platform mobile interface focused purely on scan confirmation, route tasks, and API status synchronization.',
+        implementation: [
+          'Designed high-contrast task cards with explicit completion states and zone progress counts.',
+          'Structured barcode validation payloads to prevent mismatched item dispatches.',
+          'Connected mobile status updates via lightweight REST endpoints to management dashboards.',
+          'Separated field execution screens from heavy administrative settings for zero friction.',
+        ],
+        outcome:
+          'Demonstrates how wholesale and logistics teams can eliminate paper dispatch checklists using purpose-built mobile tools.',
+        outcomeCaveat:
+          'Concept Demonstration: Mobile UX flow and integration blueprint created by NahroTech to showcase operational mobile engineering.',
+      },
+      ar: {
+        title: 'تطبيق جوال للتحقق من المستودعات وإدارة التوصيل الميداني',
+        category: 'تطوير تطبيقات الجوال',
+        statusLabel: 'نموذج تطبيقي تجريبي',
+        shortDescription:
+          'تطبيق عمليات ميداني يمكّن فرق المستودعات والتوصيل من مسح الأصناف والتحقق من الشحنات ومزامنة الحالة فوراً.',
+        imageAlt:
+          'أحد موظفي التشغيل يحمل هاتفاً ذكياً يعرض قائمة مهام التوصيل والتحقق من الباركود في المستودع',
+        businessProblem:
+          'تعتمد فرق التجهيز والتوصيل غالباً على أوراق مطبوعة ومكالمات هاتفية، مما يسبب أخطاء في تجهيز الشحنات وتأخراً في تحديث السجلات المكتبية.',
+        requirements: [
+          'توفير قائمة مهام يومية واضحة وسهلة القراءة على شاشات الهواتف.',
+          'دعم التحقق الفوري بالباركود لكل منصة أو صنف قبل خروج الشحنة.',
+          'مزامنة الحالات المكتملة مباشرة مع سجلات المخزون وإدارة الأعمال.',
+          'تصميم واجهة سريعة الاستخدام تناسب بيئة العمل الميدانية.',
+        ],
+        proposedSolution:
+          'تصميم تطبيق جوال متعدد المنصات يركز على تأكيد المسح، ومهام خط السير، ومزامنة الحالة عبر API مع المكتب الرئيسي.',
+        implementation: [
+          'بناء بطاقات مهام عالية التباين توضح نسب الإنجاز وحالة كل شحنة.',
+          'هيكلة بيانات التحقق من الباركود لمنع خروج أصناف غير مطابقة.',
+          'ربط تحديثات الميدان بلوحات المتابعة عبر واجهات برمجية خفيفة.',
+          'فصل شاشات التنفيذ اليومي عن إعدادات الإدارة لتسريع اعتماد الفريق.',
+        ],
+        outcome:
+          'يوضح النموذج قدرة شركات التوزيع على الاستغناء عن أوراق التجهيز التقليدية عبر تطبيق جوال عملي ومباشر.',
+        outcomeCaveat:
+          'نموذج تطبيقي تجريبي: تجربة مستخدم ومخطط تكامل من تطوير نحروتك لعرض قدرات تطبيقات الأعمال.',
+      },
+    },
+  },
+  {
+    slug: 'manufacturing-bom-variance-bi-model',
+    industry: 'manufacturing',
+    serviceSlug: 'business-management-solutions',
+    technologies: ['Power BI', 'Excel / Power Query', 'Business Systems'],
+    image: 'src/assets/images/manufacturing_bi_work_example_1795525934989.jpg',
+    isConceptDemo: true,
+    featured: true,
+    content: {
+      en: {
+        title: 'Manufacturing BOM Cost Variance & Production Yield Tracker',
+        category: 'Business Systems & BI',
+        statusLabel: 'Concept Demonstration',
+        shortDescription:
+          'An integrated Bill-of-Materials costing model and visual production yield dashboard comparing planned vs. actual material and labor variance.',
+        imageAlt:
+          'Tablet beside technical production drawings displaying a manufacturing BOM cost variance and line yield dashboard',
+        businessProblem:
+          'Production managers often discover raw material waste and labor overruns weeks after batch completion because shop-floor logs sit disconnected from costing tables.',
+        requirements: [
+          'Compare standard Bill-of-Materials (BOM) estimates against actual batch material draw.',
+          'Track yield percentages across active production lines and shifts.',
+          'Separate shop-floor input sheets from executive variance dashboards.',
+          'Maintain transparent auditability for finance and operations supervisors.',
+        ],
+        proposedSolution:
+          'Paired structured Excel batch-costing input ledgers with a Power BI variance dashboard highlighting material drift and line efficiency.',
+        implementation: [
+          'Built standardized BOM and scrap-log input tables with unit-measure validation.',
+          'Automated monthly batch aggregation and planned-vs-actual variance calculations.',
+          'Designed line yield gauges and monthly cost-drift visuals for plant review meetings.',
+          'Documented shift handover workflow so supervisors update logs in minutes.',
+        ],
+        outcome:
+          'Shows how mid-sized manufacturers can link shop-floor production logs directly to management cost visibility without multi-year ERP rollouts.',
+        outcomeCaveat:
+          'Concept Demonstration: Operational costing and dashboard architecture developed by NahroTech for capability demonstration.',
+      },
+      ar: {
+        title: 'نموذج متابعة فروقات تكلفة التصنيع وكفاءة خطوط الإنتاج',
+        category: 'أنظمة الأعمال وذكاء البيانات',
+        statusLabel: 'نموذج تطبيقي تجريبي',
+        shortDescription:
+          'منظومة تربط قوائم المواد (BOM) بسجلات الإنتاج لقياس الفروقات الفعلية عن المخطط ومتابعة نسبة جودة المخرجات.',
+        imageAlt:
+          'جهاز لوحي بجانب مخططات هندسية يعرض لوحة تحليل فروقات تكلفة التصنيع وكفاءة خطوط الإنتاج',
+        businessProblem:
+          'تكتشف المصانع ارتفاع هدر المواد الخام أو تجاوز تكلفة العمالة بعد أسابيع من انتهاء التشغيلة بسبب انفصال سجلات المصنع عن ملفات التكلفة.',
+        requirements: [
+          'مقارنة التكلفة المعيارية لقائمة المواد (BOM) بالاستهلاك الفعلي لكل تشغيلة.',
+          'قياس نسبة الكفاءة وجودة المخرجات عبر خطوط الإنتاج والورديات.',
+          'فصل جداول إدخال المشرفين عن لوحات التحليل الإدارية.',
+          'توفير تتبع واضح يخدم فرق المالية والتشغيل معاً.',
+        ],
+        proposedSolution:
+          'ربط دفاتر إدخال تكاليف التشغيلات المهيكلة في إكسل بلوحة Power BI تعرض انحرافات التكلفة وكفاءة الخطوط بوضوح.',
+        implementation: [
+          'توحيد جداول قوائم المواد وسجلات الفاقد مع التحقق من وحدات القياس.',
+          'أتمتة تجميع التشغيلات الشهرية وحساب الفروقات بين المخطط والفعلي.',
+          'تصميم مؤشرات كفاءة الخطوط ومخططات انحراف التكلفة لاجتماعات الإدارة.',
+          'توثيق آلية التسليم اليومية للورديات لتحديث البيانات خلال دقائق.',
+        ],
+        outcome:
+          'يوضح النموذج كيف تستطيع المصانع المتوسطة ربط بيانات الأرضية بالتكلفة الإدارية دون انتظار مشاريع ERP معقدة.',
+        outcomeCaveat:
+          'نموذج تطبيقي تجريبي: معمارية تكاليف وتحليلات من إعداد نحروتك لتوضيح إمكانات التنفيذ.',
       },
     },
   },

@@ -5,6 +5,7 @@ import {SeoHead} from '../components/SeoHead';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {Button, LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {MediaFrame} from '../components/ui/MediaFrame';
 import {getServiceBySlug} from '../content/services';
 import {
   BusinessSizeId,
@@ -237,52 +238,55 @@ export function SolutionsPage() {
                 return (
                   <article
                     key={item.id}
-                    className="flex flex-col justify-between rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)] p-6 sm:p-7 space-y-6"
+                    className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)]"
                   >
-                    <div className="space-y-4">
-                      <p className="text-xs font-medium text-[var(--nt-text-muted)]">
-                        {industryLabels} <span aria-hidden="true">/</span> {functionLabels}
-                      </p>
-
-                      <h2 className="text-xl font-bold text-[var(--nt-text)]">{copy.title}</h2>
-
-                      <div className="space-y-2">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
-                          {t.pages.solutions.challengeLabel}
-                        </h3>
-                        <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
-                          {copy.challenge}
+                    <div>
+                      <MediaFrame src={item.image} alt={copy.imageAlt} />
+                      <div className="p-6 sm:p-7 space-y-4">
+                        <p className="text-xs font-medium text-[var(--nt-text-muted)]">
+                          {industryLabels} <span aria-hidden="true">/</span> {functionLabels}
                         </p>
-                      </div>
 
-                      <div className="space-y-2">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
-                          {t.pages.solutions.solutionLabel}
-                        </h3>
-                        <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
-                          {copy.solution}
-                        </p>
-                      </div>
+                        <h2 className="text-xl font-bold text-[var(--nt-text)]">{copy.title}</h2>
 
-                      <div className="space-y-2">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
-                          {t.pages.solutions.outcomesLabel}
-                        </h3>
-                        <ul className="space-y-1.5 text-sm text-[var(--nt-text-secondary)]">
-                          {copy.outcomes.map((outcome) => (
-                            <li key={outcome} className="flex items-start gap-2">
-                              <Check
-                                className="h-4 w-4 mt-0.5 text-[#176BCE] dark:text-[#16C7D9] shrink-0"
-                                aria-hidden="true"
-                              />
-                              <span>{outcome}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="space-y-2">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
+                            {t.pages.solutions.challengeLabel}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                            {copy.challenge}
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
+                            {t.pages.solutions.solutionLabel}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                            {copy.solution}
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--nt-text-muted)]">
+                            {t.pages.solutions.outcomesLabel}
+                          </h3>
+                          <ul className="space-y-1.5 text-sm text-[var(--nt-text-secondary)]">
+                            {copy.outcomes.map((outcome) => (
+                              <li key={outcome} className="flex items-start gap-2">
+                                <Check
+                                  className="h-4 w-4 mt-0.5 text-[#176BCE] dark:text-[#16C7D9] shrink-0"
+                                  aria-hidden="true"
+                                />
+                                <span>{outcome}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[var(--nt-border)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-4 border-t border-[var(--nt-border)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div className="space-y-1">
                         <p className="text-xs font-semibold text-[var(--nt-text-muted)]">
                           {t.pages.solutions.relatedServicesLabel}

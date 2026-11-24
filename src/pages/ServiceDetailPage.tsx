@@ -6,7 +6,9 @@ import {ServiceIcon} from '../components/ServiceIcon';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
-import {buildWhatsAppUrl, siteConfig} from '../config/site';
+import {MediaFrame} from '../components/ui/MediaFrame';
+import {absoluteMediaUrl, buildWhatsAppUrl, siteConfig} from '../config/site';
+import {PORTFOLIO_ITEMS} from '../content/portfolio';
 import {getServiceBySlug} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
 import {trackServiceView, trackWhatsAppClick} from '../services/analytics';
@@ -34,12 +36,14 @@ export function ServiceDetailPage() {
   const connected = service.connectedSlugs
     .map((s) => getServiceBySlug(s))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const relatedExamples = PORTFOLIO_ITEMS.filter((item) => item.serviceSlug === service.slug);
 
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: copy.title,
     description: copy.summary,
+    image: absoluteMediaUrl(service.image),
     provider: {
       '@type': 'Organization',
       name: siteConfig.brandName,
@@ -54,6 +58,7 @@ export function ServiceDetailPage() {
         title={`${copy.title} — ${siteConfig.brandName}`}
         description={copy.summary}
         locale={locale}
+        image={service.image}
         structuredData={serviceJsonLd}
       />
 
@@ -67,8 +72,8 @@ export function ServiceDetailPage() {
             ]}
           />
 
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-8 space-y-5">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7 space-y-5">
               <div className="inline-flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#176BCE]/10 dark:bg-[#16C7D9]/15 text-[#176BCE] dark:text-[#16C7D9]">
                   <ServiceIcon name={service.iconName} />
@@ -116,21 +121,13 @@ export function ServiceDetailPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-4 rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)] p-6 space-y-4">
-              <h2 className="text-sm font-bold text-[var(--nt-text)]">
-                {t.pages.services.detail.capabilitiesLabel}
-              </h2>
-              <ul className="space-y-2.5 text-sm text-[var(--nt-text-secondary)]">
-                {copy.capabilities.map((cap) => (
-                  <li key={cap} className="flex items-start gap-2.5">
-                    <Check
-                      className="h-4 w-4 mt-0.5 text-[#176BCE] dark:text-[#16C7D9] shrink-0"
-                      aria-hidden="true"
-                    />
-                    <span>{cap}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="lg:col-span-5 space-y-3">
+              <div className="overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)]">
+                <MediaFrame src={service.image} alt={copy.imageAlt} priority />
+                <p className="px-4 py-3 text-xs font-medium text-[var(--nt-text-secondary)]">
+                  {copy.workExampleCaption}
+                </p>
+              </div>
             </div>
           </div>
         </Container>
@@ -158,7 +155,24 @@ export function ServiceDetailPage() {
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)] p-6 sm:p-7 space-y-4">
+              <h2 className="text-lg font-bold text-[var(--nt-text)]">
+                {t.pages.services.detail.capabilitiesLabel}
+              </h2>
+              <ul className="space-y-2.5 text-sm text-[var(--nt-text-secondary)]">
+                {copy.capabilities.map((cap) => (
+                  <li key={cap} className="flex items-start gap-2.5">
+                    <Check
+                      className="h-4 w-4 mt-0.5 text-[#176BCE] dark:text-[#16C7D9] shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span>{cap}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)] p-6 sm:p-7 space-y-4">
               <h2 className="text-lg font-bold text-[var(--nt-text)]">
                 {t.pages.services.detail.deliverablesLabel}
@@ -192,6 +206,71 @@ export function ServiceDetailPage() {
               </ul>
             </div>
           </div>
+
+          {relatedExamples.length > 0 && (
+            <div className="pt-4 space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h2 className="text-xl font-bold text-[var(--nt-text)]">
+                  {locale === 'ar' ? 'نماذج أعمال مرتبطة بهذه الخدمة' : 'Related Work Examples'}
+                </h2>
+                <Link
+                  to={to(ROUTE_SEGMENTS.portfolio)}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
+                >
+                  <span>{t.pages.home.viewAllPortfolio}</span>
+                  <ArrowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2">
+                {relatedExamples.map((example) => {
+                  const exCopy = example.content[locale];
+                  return (
+                    <article
+                      key={example.slug}
+                      className="group grid sm:grid-cols-5 overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)]"
+                    >
+                      <Link
+                        to={to(`${ROUTE_SEGMENTS.portfolio}/${example.slug}`)}
+                        className="sm:col-span-2 block"
+                      >
+                        <MediaFrame
+                          src={example.image}
+                          alt={exCopy.imageAlt}
+                          aspectClass="aspect-[4/3] sm:h-full"
+                          className="sm:border-b-0"
+                        />
+                      </Link>
+                      <div className="sm:col-span-3 p-5 flex flex-col justify-between gap-3">
+                        <div className="space-y-2">
+                          <p className="text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
+                            {exCopy.statusLabel}
+                          </p>
+                          <h3 className="text-base font-bold text-[var(--nt-text)]">
+                            <Link
+                              to={to(`${ROUTE_SEGMENTS.portfolio}/${example.slug}`)}
+                              className="hover:text-[#176BCE] dark:hover:text-[#16C7D9] transition-colors"
+                            >
+                              {exCopy.title}
+                            </Link>
+                          </h3>
+                          <p className="text-xs leading-relaxed text-[var(--nt-text-secondary)]">
+                            {exCopy.shortDescription}
+                          </p>
+                        </div>
+                        <Link
+                          to={to(`${ROUTE_SEGMENTS.portfolio}/${example.slug}`)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
+                        >
+                          <span>{t.pages.portfolio.viewCaseStudy}</span>
+                          <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {connected.length > 0 && (
             <div className="pt-4 space-y-5">

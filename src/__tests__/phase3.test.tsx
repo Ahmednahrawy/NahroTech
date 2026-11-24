@@ -142,4 +142,39 @@ describe('Phase 3 Business Presentation', () => {
     ).toBeInTheDocument();
     expect(document.querySelector('.nt-prose')).not.toBeNull();
   });
+
+  it('renders visual work-example images with alt text on Services, ServiceDetail, Solutions, and Portfolio pages', () => {
+    const servicesView = render(
+      <MemoryRouter initialEntries={['/en/services']}>
+        <App />
+      </MemoryRouter>,
+    );
+    const serviceImages = servicesView.container.querySelectorAll('img');
+    expect(serviceImages.length).toBeGreaterThanOrEqual(6);
+    serviceImages.forEach((img) => {
+      expect(img.getAttribute('src')).toBeTruthy();
+      expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(10);
+    });
+    servicesView.unmount();
+
+    const detailView = render(
+      <MemoryRouter initialEntries={['/en/services/web-design-development']}>
+        <App />
+      </MemoryRouter>,
+    );
+    const detailImages = detailView.container.querySelectorAll('img');
+    expect(detailImages.length).toBeGreaterThanOrEqual(2);
+    expect(detailView.getByRole('heading', {name: 'Related Work Examples'})).toBeInTheDocument();
+    detailView.unmount();
+
+    const solutionsView = render(
+      <MemoryRouter initialEntries={['/ar/solutions']}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(solutionsView.container.querySelectorAll('img').length).toBeGreaterThanOrEqual(6);
+    solutionsView.unmount();
+
+    expect(PORTFOLIO_ITEMS).toHaveLength(6);
+  });
 });

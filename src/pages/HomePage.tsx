@@ -18,7 +18,7 @@ export function HomePage() {
   const {locale, dir, t, to} = useLocale();
   const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
   const about = ABOUT_CONTENT[locale];
-  const featuredPortfolio = PORTFOLIO_ITEMS.filter((item) => item.featured).slice(0, 3);
+  const featuredPortfolio = PORTFOLIO_ITEMS.filter((item) => item.featured).slice(0, 6);
   const featuredProducts = PRODUCTS.filter((p) => p.readyForSale && p.featured).slice(0, 3);
   const latestInsights = getInsightsByLocale(locale).slice(0, 3);
 
@@ -150,33 +150,36 @@ export function HomePage() {
             </LinkButton>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((service) => {
               const copy = service.content[locale];
               return (
                 <Link
                   key={service.slug}
                   to={to(`${ROUTE_SEGMENTS.services}/${service.slug}`)}
-                  className="group flex flex-col justify-between rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)] p-6 transition-colors hover:border-[#176BCE] dark:hover:border-[#16C7D9]"
+                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)] transition-colors hover:border-[#176BCE] dark:hover:border-[#16C7D9]"
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#176BCE]/10 dark:bg-[#16C7D9]/15 text-[#176BCE] dark:text-[#16C7D9]">
-                        <ServiceIcon name={service.iconName} />
-                      </span>
-                      <span className="text-xs font-bold text-[var(--nt-text-muted)] tabular-nums">
-                        {service.order}
-                      </span>
+                  <div>
+                    <MediaFrame src={service.image} alt={copy.imageAlt} />
+                    <div className="p-6 space-y-3.5">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#176BCE]/10 dark:bg-[#16C7D9]/15 text-[#176BCE] dark:text-[#16C7D9]">
+                          <ServiceIcon name={service.iconName} />
+                        </span>
+                        <span className="text-xs font-bold text-[var(--nt-text-muted)] tabular-nums">
+                          {service.order}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-[var(--nt-text)] group-hover:text-[#176BCE] dark:group-hover:text-[#16C7D9] transition-colors">
+                        {copy.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
+                        {copy.summary}
+                      </p>
                     </div>
-                    <h3 className="text-lg font-bold text-[var(--nt-text)] group-hover:text-[#176BCE] dark:group-hover:text-[#16C7D9] transition-colors">
-                      {copy.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">
-                      {copy.summary}
-                    </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-[var(--nt-border)] flex items-center justify-between text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
+                  <div className="mx-6 mb-6 pt-4 border-t border-[var(--nt-border)] flex items-center justify-between text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
                     <span>{t.actions.viewServiceDetails}</span>
                     <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                   </div>

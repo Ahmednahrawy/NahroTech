@@ -10,10 +10,12 @@ export interface SolutionEntry {
   functions: FunctionId[];
   sizes: BusinessSizeId[];
   relatedServiceSlugs: string[];
+  image: string;
   content: Record<
     Locale,
     {
       title: string;
+      imageAlt: string;
       challenge: string;
       solution: string;
       outcomes: string[];
@@ -102,9 +104,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['sales', 'inventory', 'reporting'],
     sizes: ['startup', 'sme', 'enterprise'],
     relatedServiceSlugs: ['data-business-intelligence', 'excel-solutions-automation', 'web-design-development'],
+    image: 'src/assets/images/bi_analytics_workspace_1795357660215.jpg',
     content: {
       en: {
         title: 'Multi-Channel Sales & Stock Visibility',
+        imageAlt: 'Laptop displaying retail margin and multi-branch inventory analytics charts',
         challenge:
           'Online stores and physical branches often report stock separately, causing overselling on fast-moving SKUs and capital locked in slow inventory.',
         solution:
@@ -117,6 +121,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'توحيد رؤية المبيعات والمخزون عبر القنوات',
+        imageAlt: 'حاسوب يعرض لوحة تحليلات هوامش التجزئة وحركة مخزون الفروع',
         challenge:
           'تعمل المتاجر الإلكترونية والفروع أحياناً بسجلات منفصلة، مما يسبب نفاد الأصناف سريعة الدوران أو تجميد السيولة في مخزون راكد.',
         solution:
@@ -135,9 +140,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['sales', 'finance', 'inventory', 'crm'],
     sizes: ['sme', 'enterprise'],
     relatedServiceSlugs: ['business-management-solutions', 'excel-solutions-automation', 'data-business-intelligence'],
+    image: 'src/assets/images/retail_inventory_ops_1795357660077.jpg',
     content: {
       en: {
         title: 'Wholesale Order, Credit & Receivables Control',
+        imageAlt: 'Operations staff reviewing wholesale order dispatch and stock records on a tablet',
         challenge:
           'Distributors managing B2B credit terms across dozens of accounts struggle with overdue invoice blind spots and warehouse dispatch delays.',
         solution:
@@ -150,6 +157,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'ضبط طلبات الجملة والائتمان والتحصيل',
+        imageAlt: 'فريق عمليات يراجع طلبات الجملة وسجلات المخزون عبر جهاز لوحي',
         challenge:
           'تواجه شركات التوزيع صعوبة في متابعة حدود ائتمان العملاء وتأخر الفواتير المستحقة وتنسيق تجهيز المستودعات.',
         solution:
@@ -168,9 +176,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['operations', 'inventory', 'finance', 'reporting'],
     sizes: ['sme', 'enterprise'],
     relatedServiceSlugs: ['excel-solutions-automation', 'data-business-intelligence', 'business-management-solutions'],
+    image: 'src/assets/images/manufacturing_bi_work_example_1795525934989.jpg',
     content: {
       en: {
         title: 'Production Costing & Material Variance Tracking',
+        imageAlt: 'Tablet showing manufacturing BOM cost variance and production yield metrics beside technical drawings',
         challenge:
           'Manufacturing units often calculate batch costs manually after production finishes, hiding material waste and unit-cost drift.',
         solution:
@@ -183,6 +193,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'تتبع تكاليف الإنتاج وفروقات المواد الخام',
+        imageAlt: 'جهاز لوحي يعرض لوحة تحليل فروقات تكلفة التصنيع وكفاءة الإنتاج بجانب رسومات هندسية',
         challenge:
           'غالباً ما تحسب المصانع تكلفة التشغيلات يدوياً بعد الانتهاء، مما يخفي نسب الهدر وتغير تكلفة الوحدة.',
         solution:
@@ -201,9 +212,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['sales', 'crm', 'operations', 'reporting'],
     sizes: ['individual', 'startup', 'sme'],
     relatedServiceSlugs: ['business-management-solutions', 'web-design-development', 'ai-digital-automation'],
+    image: 'src/assets/images/crm_management_work_example_1795525932669.jpg',
     content: {
       en: {
         title: 'Client Pipeline, Delivery & Automated Follow-Ups',
+        imageAlt: 'Executive dual-screen workstation displaying client pipeline board and contract milestone tracker',
         challenge:
           'Consultancies, agencies, and service providers lose leads between inquiry forms, email threads, and manual project status updates.',
         solution:
@@ -216,6 +229,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'إدارة مسار العملاء وتنفيذ المشاريع والمتابعة الآلية',
+        imageAlt: 'محطة عمل تعرض لوحة متابعة العملاء وجدول مراحل العقود والفواتير',
         challenge:
           'تفقد الشركات الخدمية والمكاتب الاستشارية فرصاً بيعية بين نماذج الموقع ورسائل البريد ومتابعة حالة التنفيذ اليدوية.',
         solution:
@@ -234,9 +248,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['finance', 'reporting'],
     sizes: ['individual', 'startup', 'sme'],
     relatedServiceSlugs: ['excel-solutions-automation', 'data-business-intelligence'],
+    image: 'src/assets/images/excel_financial_model_1795357660368.jpg',
     content: {
       en: {
         title: 'Cash-Flow Modeling & Executive Financial Clarity',
+        imageAlt: 'Studio view of an automated Excel cash-flow model and forecasting ledger',
         challenge:
           'Entrepreneurs and growing teams frequently confuse revenue growth with healthy cash flow until unexpected shortfalls occur.',
         solution:
@@ -249,6 +265,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'نمذجة التدفقات النقدية ووضوح الأداء المالي',
+        imageAlt: 'عرض لنموذج إكسل مهيكل للتدفقات النقدية والتوقعات المالية الشهرية',
         challenge:
           'يخلط كثير من رواد الأعمال بين نمو المبيعات وصحة التدفق النقدي، مما يؤدي لمفاجآت سيولة غير متوقعة.',
         solution:
@@ -267,9 +284,11 @@ export const SOLUTIONS: SolutionEntry[] = [
     functions: ['operations', 'sales', 'crm'],
     sizes: ['sme', 'enterprise'],
     relatedServiceSlugs: ['mobile-app-development', 'ai-digital-automation', 'web-design-development'],
+    image: 'src/assets/images/mobile_field_app_example_1795525932539.jpg',
     content: {
       en: {
         title: 'Connected Field Operations & API Workflow Sync',
+        imageAlt: 'Field operator using a mobile dispatch and stock verification application inside a warehouse',
         challenge:
           'Teams on the move rely on paper forms or chat messages that must later be re-typed manually into office systems.',
         solution:
@@ -282,6 +301,7 @@ export const SOLUTIONS: SolutionEntry[] = [
       },
       ar: {
         title: 'ربط العمليات الميدانية وأتمتة تدفق البيانات',
+        imageAlt: 'موظف ميداني يستخدم تطبيق جوال للتحقق من المخزون وجدولة التسليم داخل المستودع',
         challenge:
           'تعتمد الفرق الميدانية غالباً على أوراق أو رسائل دردشة يعاد إدخالها يدوياً لاحقاً في أنظمة المكتب.',
         solution:

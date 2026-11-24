@@ -5,6 +5,7 @@ import {ServiceIcon} from '../components/ServiceIcon';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {MediaFrame} from '../components/ui/MediaFrame';
 import {SERVICES, ServiceItem} from '../content/services';
 import {useLocale} from '../i18n/LocaleContext';
 import {ROUTE_SEGMENTS} from '../utils/routes';
@@ -15,33 +16,49 @@ function ServiceCard({service}: {service: ServiceItem}) {
   const copy = service.content[locale];
 
   return (
-    <article className="flex flex-col justify-between rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)] p-6 sm:p-7 space-y-6">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#176BCE]/10 dark:bg-[#16C7D9]/15 text-[#176BCE] dark:text-[#16C7D9]">
-            <ServiceIcon name={service.iconName} />
-          </span>
-          <span className="text-xs font-bold text-[var(--nt-text-muted)] tabular-nums">
-            {service.order}
-          </span>
+    <article className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)]">
+      <div>
+        <Link to={to(`${ROUTE_SEGMENTS.services}/${service.slug}`)}>
+          <MediaFrame src={service.image} alt={copy.imageAlt} />
+        </Link>
+        <div className="p-6 sm:p-7 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#176BCE]/10 dark:bg-[#16C7D9]/15 text-[#176BCE] dark:text-[#16C7D9]">
+              <ServiceIcon name={service.iconName} />
+            </span>
+            <span className="text-xs font-bold text-[var(--nt-text-muted)] tabular-nums">
+              {service.order}
+            </span>
+          </div>
+
+          <p className="text-xs font-medium text-[#176BCE] dark:text-[#16C7D9]">
+            {copy.workExampleCaption}
+          </p>
+
+          <h3 className="text-xl font-bold text-[var(--nt-text)]">
+            <Link
+              to={to(`${ROUTE_SEGMENTS.services}/${service.slug}`)}
+              className="hover:text-[#176BCE] dark:hover:text-[#16C7D9] transition-colors"
+            >
+              {copy.title}
+            </Link>
+          </h3>
+          <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">{copy.summary}</p>
+
+          <ul className="space-y-1.5 pt-2 text-xs text-[var(--nt-text-secondary)]">
+            {copy.capabilities.map((cap) => (
+              <li key={cap} className="flex items-baseline gap-2">
+                <span className="text-[#176BCE] dark:text-[#16C7D9]" aria-hidden="true">
+                  —
+                </span>
+                <span>{cap}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <h3 className="text-xl font-bold text-[var(--nt-text)]">{copy.title}</h3>
-        <p className="text-sm leading-relaxed text-[var(--nt-text-secondary)]">{copy.summary}</p>
-
-        <ul className="space-y-1.5 pt-2 text-xs text-[var(--nt-text-secondary)]">
-          {copy.capabilities.map((cap) => (
-            <li key={cap} className="flex items-baseline gap-2">
-              <span className="text-[#176BCE] dark:text-[#16C7D9]" aria-hidden="true">
-                —
-              </span>
-              <span>{cap}</span>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      <div className="pt-4 border-t border-[var(--nt-border)] flex items-center justify-between gap-3">
+      <div className="px-6 sm:px-7 pb-6 pt-4 border-t border-[var(--nt-border)] flex items-center justify-between gap-3">
         <Link
           to={to(`${ROUTE_SEGMENTS.services}/${service.slug}`)}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#176BCE] dark:text-[#16C7D9] hover:underline"
