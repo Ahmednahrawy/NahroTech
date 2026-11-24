@@ -238,7 +238,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: 'operations-crm-pipeline-tracker',
     category: 'business-management',
-    image: 'src/assets/images/retail_inventory_ops_1795357660077.jpg',
+    image: 'src/assets/images/crm_management_work_example_1795525932669.jpg',
     indicativePriceUsd: 45,
     featured: true,
     readyForSale: true,
@@ -249,7 +249,8 @@ export const PRODUCTS: ProductItem[] = [
           'Practical customer relationship, quotation follow-up, and active project milestone tracker designed for service teams.',
         description:
           'Keep every client inquiry, proposal, follow-up date, and active project milestone organized in one unified workspace without paying monthly per-seat SaaS fees.',
-        imageAlt: 'Operational workspace illustrating organized pipeline and inventory management',
+        imageAlt:
+          'Executive workstation displaying a client pipeline board and contract milestone tracker',
         priceDisplay: '$45 USD (Indicative — one-time purchase)',
         features: [
           'Lead-to-proposal-to-delivery status pipeline with priority follow-up flags',
@@ -310,7 +311,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: 'bilingual-business-portal-starter-kit',
     category: 'software-apps',
-    image: 'src/assets/images/bi_analytics_workspace_1795357660215.jpg',
+    image: 'src/assets/images/web_portal_work_example_1795525930779.jpg',
     featured: false,
     readyForSale: true,
     content: {
@@ -320,7 +321,8 @@ export const PRODUCTS: ProductItem[] = [
           'Static-first bilingual (EN/AR) React + TypeScript web starter kit for service companies launching fast inquiry and catalog portals.',
         description:
           'Designed for technical founders and studios who want a clean bilingual web foundation with RTL/LTR support, static route prerendering, SEO metadata, and inquiry form wiring.',
-        imageAlt: 'Modern laptop displaying clean web portal architecture',
+        imageAlt:
+          'Desktop display and tablet showing a bilingual corporate catalog and client intake web portal',
         priceDisplay: 'Custom licensing / Direct inquiry',
         features: [
           'English (LTR) and Arabic (RTL) routing and typography foundation',

@@ -1,11 +1,12 @@
-import {ArrowLeft, ArrowRight, Check, MessageSquare} from 'lucide-react';
-import {useEffect} from 'react';
+import {ArrowLeft, ArrowRight, Check, Maximize2, MessageSquare} from 'lucide-react';
+import {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {SeoHead} from '../components/SeoHead';
 import {ServiceIcon} from '../components/ServiceIcon';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {LightboxModal} from '../components/ui/LightboxModal';
 import {MediaFrame} from '../components/ui/MediaFrame';
 import {absoluteMediaUrl, buildWhatsAppUrl, siteConfig} from '../config/site';
 import {PORTFOLIO_ITEMS} from '../content/portfolio';
@@ -18,6 +19,7 @@ import {NotFoundPage} from './NotFoundPage';
 export function ServiceDetailPage() {
   const {slug} = useParams<{slug: string}>();
   const {locale, dir, t, to} = useLocale();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const service = getServiceBySlug(slug);
 
   useEffect(() => {
@@ -122,8 +124,19 @@ export function ServiceDetailPage() {
             </div>
 
             <div className="lg:col-span-5 space-y-3">
-              <div className="overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)]">
-                <MediaFrame src={service.image} alt={copy.imageAlt} priority />
+              <div className="group overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)]">
+                <div className="relative">
+                  <MediaFrame src={service.image} alt={copy.imageAlt} priority />
+                  <button
+                    type="button"
+                    onClick={() => setLightboxOpen(true)}
+                    aria-label={locale === 'ar' ? 'تكبير صورة نموذج العمل' : 'Expand work example image'}
+                    className="absolute end-3 bottom-3 inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/25 bg-[#101B35]/85 px-3 text-xs font-semibold text-white backdrop-blur-xs hover:bg-[#176BCE] transition-colors cursor-pointer"
+                  >
+                    <Maximize2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span>{locale === 'ar' ? 'معاينة كاملة' : 'Full view'}</span>
+                  </button>
+                </div>
                 <p className="px-4 py-3 text-xs font-medium text-[var(--nt-text-secondary)]">
                   {copy.workExampleCaption}
                 </p>
@@ -300,6 +313,15 @@ export function ServiceDetailPage() {
           )}
         </Container>
       </section>
+
+      <LightboxModal
+        open={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        src={service.image}
+        alt={copy.imageAlt}
+        title={copy.title}
+        subtitle={copy.workExampleCaption}
+      />
     </>
   );
 }

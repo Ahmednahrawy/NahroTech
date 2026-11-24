@@ -1,8 +1,10 @@
 import {ArrowLeft, ArrowRight} from 'lucide-react';
+import {Link} from 'react-router-dom';
 import {SeoHead} from '../components/SeoHead';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {LinkButton} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {MediaFrame} from '../components/ui/MediaFrame';
 import {ABOUT_CONTENT} from '../content/about';
 import {useLocale} from '../i18n/LocaleContext';
 import {ROUTE_SEGMENTS} from '../utils/routes';
@@ -28,16 +30,39 @@ export function AboutPage() {
               {label: t.nav.about},
             ]}
           />
-          <div className="max-w-3xl space-y-4">
-            <p className="text-sm font-semibold text-[#176BCE] dark:text-[#16C7D9]">
-              {content.eyebrow}
-            </p>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--nt-text)]">
-              {content.heading}
-            </h1>
-            <p className="text-base sm:text-lg leading-relaxed text-[var(--nt-text-secondary)]">
-              {content.lead}
-            </p>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <p className="text-sm font-semibold text-[#176BCE] dark:text-[#16C7D9]">
+                {content.eyebrow}
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--nt-text)]">
+                {content.heading}
+              </h1>
+              <p className="text-base sm:text-lg leading-relaxed text-[var(--nt-text-secondary)]">
+                {content.lead}
+              </p>
+            </div>
+
+            <div className="lg:col-span-5">
+              <Link
+                to={to(ROUTE_SEGMENTS.portfolio)}
+                className="group block overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-bg)] hover:border-[#176BCE] dark:hover:border-[#16C7D9] transition-colors"
+              >
+                <MediaFrame
+                  src="src/assets/images/retail_inventory_ops_1795357660077.jpg"
+                  alt={
+                    locale === 'ar'
+                      ? 'فريق تشغيل يراجع سجلات العمل والمخزون على جهاز لوحي'
+                      : 'Operations team reviewing structured workflow and inventory records on a tablet'
+                  }
+                  priority
+                />
+                <div className="px-4 py-3 flex items-center justify-between gap-3 text-xs font-semibold text-[#176BCE] dark:text-[#16C7D9]">
+                  <span>{t.pages.home.viewAllPortfolio}</span>
+                  <ArrowIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                </div>
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

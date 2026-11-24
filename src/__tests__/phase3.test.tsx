@@ -177,4 +177,29 @@ describe('Phase 3 Business Presentation', () => {
 
     expect(PORTFOLIO_ITEMS).toHaveLength(6);
   });
+
+  it('opens and closes full-resolution LightboxModal previews on Portfolio and Case Study pages', () => {
+    const {unmount} = render(
+      <MemoryRouter initialEntries={['/en/portfolio/b2b-catalog-inquiry-web-portal']}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    const expandBtn = screen.getByRole('button', {name: /Expand work example image/i});
+    fireEvent.click(expandBtn);
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', {name: /Close image preview/i}));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    unmount();
+
+    render(
+      <MemoryRouter initialEntries={['/en/about']}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(screen.getByAltText(/Operations team reviewing structured workflow/i)).toBeInTheDocument();
+  });
 });

@@ -4,8 +4,8 @@ summary: "أين تحقق الشركات الصغيرة والمتوسطة وف�
 category: "الذكاء والأتمتة"
 publishedAt: "2026-11-20"
 readTime: "4 دقائق قراءة"
-image: "src/assets/images/digital_guide_studio_1795357660137.jpg"
-imageAlt: "دليل تقني وجهاز لوحي على سطح حجري فاتح"
+image: "src/assets/images/ai_automation_workflow_example_1795525934849.jpg"
+imageAlt: "شاشة عرض عريضة تعرض مخطط أتمتة توجيه المستندات وسجل أحداث API"
 relatedServiceSlug: "ai-digital-automation"
 ---
 

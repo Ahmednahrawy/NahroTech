@@ -4,8 +4,8 @@ summary: "Where small and mid-sized businesses actually gain time from API integ
 category: "AI & Automation"
 publishedAt: "2026-11-20"
 readTime: "4 min read"
-image: "src/assets/images/digital_guide_studio_1795357660137.jpg"
-imageAlt: "Minimalist technical guide and tablet on light stone studio surface"
+image: "src/assets/images/ai_automation_workflow_example_1795525934849.jpg"
+imageAlt: "Widescreen workstation displaying an automated document routing diagram and API webhook timeline"
 relatedServiceSlug: "ai-digital-automation"
 ---
 

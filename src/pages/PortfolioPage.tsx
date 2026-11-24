@@ -1,10 +1,11 @@
-import {ArrowLeft, ArrowRight} from 'lucide-react';
+import {ArrowLeft, ArrowRight, Maximize2} from 'lucide-react';
 import {useMemo, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {SeoHead} from '../components/SeoHead';
 import {Breadcrumbs} from '../components/ui/Breadcrumbs';
 import {Button} from '../components/ui/Button';
 import {Container} from '../components/ui/Container';
+import {LightboxModal} from '../components/ui/LightboxModal';
 import {MediaFrame} from '../components/ui/MediaFrame';
 import {PORTFOLIO_ITEMS} from '../content/portfolio';
 import {SERVICES, getServiceBySlug} from '../content/services';
@@ -20,6 +21,12 @@ export function PortfolioPage() {
   const [industryFilter, setIndustryFilter] = useState<IndustryId | 'all'>('all');
   const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [techFilter, setTechFilter] = useState<string>('all');
+  const [previewItem, setPreviewItem] = useState<{
+    src: string;
+    alt: string;
+    title: string;
+    subtitle: string;
+  } | null>(null);
 
   const technologies = useMemo(() => {
     const set = new Set<string>();
@@ -229,9 +236,30 @@ export function PortfolioPage() {
                     className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[var(--nt-border)] bg-[var(--nt-surface)]"
                   >
                     <div>
-                      <Link to={to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`)}>
-                        <MediaFrame src={item.image} alt={copy.imageAlt} />
-                      </Link>
+                      <div className="relative">
+                        <Link to={to(`${ROUTE_SEGMENTS.portfolio}/${item.slug}`)}>
+                          <MediaFrame src={item.image} alt={copy.imageAlt} />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setPreviewItem({
+                              src: item.image,
+                              alt: copy.imageAlt,
+                              title: copy.title,
+                              subtitle: `${copy.statusLabel} · ${service?.content[locale].shortTitle || copy.category}`,
+                            })
+                          }
+                          aria-label={
+                            locale === 'ar'
+                              ? `تكبير معاينة ${copy.title}`
+                              : `Expand preview for ${copy.title}`
+                          }
+                          className="absolute end-3 bottom-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/25 bg-[#101B35]/80 text-white backdrop-blur-xs opacity-90 hover:opacity-100 hover:bg-[#176BCE] transition-all cursor-pointer"
+                        >
+                          <Maximize2 className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                      </div>
                       <div className="p-6 space-y-3">
                         <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--nt-text-muted)]">
                           <span className="font-semibold text-[#176BCE] dark:text-[#16C7D9]">
@@ -273,6 +301,15 @@ export function PortfolioPage() {
           )}
         </Container>
       </section>
+
+      <LightboxModal
+        open={Boolean(previewItem)}
+        onClose={() => setPreviewItem(null)}
+        src={previewItem?.src || ''}
+        alt={previewItem?.alt || ''}
+        title={previewItem?.title || ''}
+        subtitle={previewItem?.subtitle}
+      />
     </>
   );
 }
